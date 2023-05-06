@@ -15,9 +15,9 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the fo
 docker-compose up -d
 ```
 
-## Start application
+## Running application using Maven
 
-In a terminal and inside `sprinboot-jpa-studies` root folder, run the command below
+In a terminal and inside `spring-data-jpa-relationships` root folder, run the command below
 ```
 ./mvnw clean spring-boot:run
 ```
@@ -26,7 +26,7 @@ Once the application is running, you can access its Swagger website at http://lo
 
 ## Running Tests
 
-In a terminal and inside `sprinboot-jpa-studies` root folder, run the following command
+In a terminal and inside `spring-data-jpa-relationships` root folder, run the following command
 ```
 ./mvnw clean test
 ```
