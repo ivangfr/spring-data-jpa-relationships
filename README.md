@@ -7,6 +7,7 @@ The goal of this project is to study the JPA relationships: `one-to-one`, `one-t
 > **I Would Appreciate Your Support**: I’m embarking on a writing journey on [Medium](https://medium.com/@ivangfr) and I would be grateful for your support. If you enjoy my content, please consider [following me](https://medium.com/@ivangfr). **I am committed to following you back**, and together we can share our knowledge and experiences on the platform.
 
 - \[**Medium**\] [**Understanding Relationships in JPA: Introduction**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-introduction-5416c8a7c8a9)
+- \[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-simple-primary-key-7c32f7e13a6a)
 
 ## Prerequisites
 
@@ -43,7 +44,7 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the fo
 
 ![teams_team_details](documentation/teams_team_details.png)
 
-Medium article
+\[**Medium**\]: [**Understanding Relationships in JPA: One-to-One with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-simple-primary-key-7c32f7e13a6a)
 
 ### One-to-One with Shared Primary Key
 
