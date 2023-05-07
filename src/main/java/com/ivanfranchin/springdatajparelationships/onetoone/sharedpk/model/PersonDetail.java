@@ -1,5 +1,6 @@
 package com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -24,5 +25,6 @@ public class PersonDetail {
     @MapsId
     private Person person;
 
+    @Column(nullable = false)
     private String description;
 }

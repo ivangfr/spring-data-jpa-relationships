@@ -8,6 +8,8 @@ The goal of this project is to study the JPA relationships: `one-to-one`, `one-t
 
 - \[**Medium**\] [**Understanding Relationships in JPA: Introduction**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-introduction-5416c8a7c8a9)
 - \[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-simple-primary-key-7c32f7e13a6a)
+- \[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Shared Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-shared-primary-key-36596416fe56)
+- \[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-simple-primary-key-e2e975c67c31)
 
 ## Prerequisites
 
@@ -50,13 +52,13 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the fo
 
 ![persons_person_details](documentation/persons_person_details.png)
 
-Medium article
+\[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Shared Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-shared-primary-key-36596416fe56)
 
 ### One-to-Many with Simple Primary Key
 
 ![restaurants_dishes](documentation/restaurants_dishes.png)
 
-Medium article
+\[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-simple-primary-key-e2e975c67c31)
 
 ### One-to-Many with Composite Primary Key
 

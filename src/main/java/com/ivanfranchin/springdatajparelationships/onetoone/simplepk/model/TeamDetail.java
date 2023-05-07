@@ -1,5 +1,6 @@
 package com.ivanfranchin.springdatajparelationships.onetoone.simplepk.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -27,5 +28,6 @@ public class TeamDetail {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    @Column(nullable = false)
     private String description;
 }
