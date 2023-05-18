@@ -11,6 +11,9 @@ The goal of this project is to study the JPA relationships: `one-to-one`, `one-t
 - \[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Shared Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-shared-primary-key-36596416fe56)
 - \[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-simple-primary-key-e2e975c67c31)
 - \[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Composite Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-composite-primary-key-1d7724a2bf63)
+- \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-b38209e5c9b4)
+- \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-and-extra-column-817e8bdda465)
+- \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Composite Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-composite-primary-key-and-extra-column-a939b107c7cd)
 
 ## Prerequisites
 
@@ -71,19 +74,19 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the fo
 
 ![writers_books](documentation/writers_books.png)
 
-Medium article
+\[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-b38209e5c9b4)
 
 ### Many-to-Many with Simple Primary Key and Extra Column
 
 ![reviewers_articles](documentation/reviewers_comments_articles.png)
 
-Medium article
+\[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-and-extra-column-817e8bdda465)
 
 ### Many-to-Many with Composite Primary Key and Extra Column
 
 ![students_courses](documentation/students_courses.png)
 
-Medium article
+\[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Composite Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-composite-primary-key-and-extra-column-a939b107c7cd)
 
 ## Useful Commands
 
