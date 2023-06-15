@@ -1,6 +1,6 @@
 package com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.rest;
 
-import com.ivanfranchin.springdatajparelationships.AbstractTestcontainers;
+import com.ivanfranchin.springdatajparelationships.MyContainers;
 import com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.model.Person;
 import com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.model.PersonDetail;
 import com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.repository.PersonRepository;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.testcontainers.context.ImportTestcontainers;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,8 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class PersonDetailControllerTest extends AbstractTestcontainers {
+@ImportTestcontainers(MyContainers.class)
+class PersonDetailControllerTest implements MyContainers {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

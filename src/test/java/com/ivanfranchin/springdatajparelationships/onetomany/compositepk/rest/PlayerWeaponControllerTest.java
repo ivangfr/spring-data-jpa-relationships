@@ -1,6 +1,6 @@
 package com.ivanfranchin.springdatajparelationships.onetomany.compositepk.rest;
 
-import com.ivanfranchin.springdatajparelationships.AbstractTestcontainers;
+import com.ivanfranchin.springdatajparelationships.MyContainers;
 import com.ivanfranchin.springdatajparelationships.onetomany.compositepk.model.Player;
 import com.ivanfranchin.springdatajparelationships.onetomany.compositepk.model.Weapon;
 import com.ivanfranchin.springdatajparelationships.onetomany.compositepk.model.WeaponPk;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.testcontainers.context.ImportTestcontainers;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true"
 )
-class PlayerWeaponControllerTest extends AbstractTestcontainers {
+@ImportTestcontainers(MyContainers.class)
+class PlayerWeaponControllerTest implements MyContainers {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

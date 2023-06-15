@@ -1,6 +1,6 @@
 package com.ivanfranchin.springdatajparelationships.onetomany.simplepk.rest;
 
-import com.ivanfranchin.springdatajparelationships.AbstractTestcontainers;
+import com.ivanfranchin.springdatajparelationships.MyContainers;
 import com.ivanfranchin.springdatajparelationships.onetomany.simplepk.model.Dish;
 import com.ivanfranchin.springdatajparelationships.onetomany.simplepk.model.Restaurant;
 import com.ivanfranchin.springdatajparelationships.onetomany.simplepk.repository.DishRepository;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.testcontainers.context.ImportTestcontainers;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true"
 )
-class RestaurantDishControllerTest extends AbstractTestcontainers {
+@ImportTestcontainers(MyContainers.class)
+class RestaurantDishControllerTest implements MyContainers {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
