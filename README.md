@@ -22,13 +22,12 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 - [`Java 17+`](https://www.oracle.com/java/technologies/downloads/#java17)
 - [`Docker`](https://www.docker.com/)
-- [`Docker-Compose`](https://docs.docker.com/compose/install/)
 
 ## Start Environment
 
 In a terminal and inside `spring-data-jpa-relationships` root folder, run the following command
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Running application using Maven
@@ -39,6 +38,24 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the co
 ```
 
 Once the application is running, you can access its Swagger website at http://localhost:8080/swagger-ui.html
+
+## Useful Commands
+
+- **Postgres**
+  ```
+  docker exec -it postgres psql -U postgres -d jparelationshipsdb
+  \d persons
+  select * from persons;
+  ```
+  > Type `exit` to exit
+
+## Shutdown
+
+- To stop the application, go to the terminal where it is running and press `Ctrl+C`
+- To stop and remove docker compose containers, network and volumes, go to a terminal and, inside `spring-data-jpa-relationships` root folder, run the following command
+  ```
+  docker compose down -v
+  ```
 
 ## Running Tests
 
@@ -90,16 +107,6 @@ In a terminal and inside `spring-data-jpa-relationships` root folder, run the fo
 ![students_courses](documentation/students_courses.png)
 
 \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Composite Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-composite-primary-key-and-extra-column-a939b107c7cd)
-
-## Useful Commands
-
-- **Postgres**
-  ```
-  docker exec -it postgres psql -U postgres -d jparelationshipsdb
-  \d persons
-  select * from persons;
-  ```
-  > Type `exit` to exit
 
 ## References
 
