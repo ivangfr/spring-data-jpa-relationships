@@ -129,7 +129,7 @@ class WriterBookControllerTest implements MyContainers {
         assertThat(responseEntity.getBody().id()).isEqualTo(writer.getId());
         assertThat(responseEntity.getBody().name()).isEqualTo(writer.getName());
         assertThat(responseEntity.getBody().books().size()).isEqualTo(1);
-        assertThat(responseEntity.getBody().books().get(0).id()).isEqualTo(book.getId());
+        assertThat(responseEntity.getBody().books().getFirst().id()).isEqualTo(book.getId());
 
         Optional<Writer> writerOptional = writerRepository.findById(writer.getId());
         assertThat(writerOptional.isPresent()).isTrue();
@@ -254,7 +254,7 @@ class WriterBookControllerTest implements MyContainers {
         assertThat(responseEntity.getBody().id()).isEqualTo(book.getId());
         assertThat(responseEntity.getBody().name()).isEqualTo(book.getName());
         assertThat(responseEntity.getBody().writers().size()).isEqualTo(1);
-        assertThat(responseEntity.getBody().writers().get(0).id()).isEqualTo(writer.getId());
+        assertThat(responseEntity.getBody().writers().getFirst().id()).isEqualTo(writer.getId());
 
         Optional<Book> bookOptional = bookRepository.findById(book.getId());
         assertThat(bookOptional.isPresent()).isTrue();
