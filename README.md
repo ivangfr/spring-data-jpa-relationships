@@ -25,14 +25,14 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 ## Start Environment
 
-In a terminal and inside `spring-data-jpa-relationships` root folder, run the following command:
+In a terminal and inside the `spring-data-jpa-relationships` root folder, run the following command:
 ```
 docker compose up -d
 ```
 
 ## Running application using Maven
 
-In a terminal and inside `spring-data-jpa-relationships` root folder, run the command below:
+In a terminal and inside the `spring-data-jpa-relationships` root folder, run the command below:
 ```
 ./mvnw clean spring-boot:run
 ```
@@ -52,14 +52,14 @@ Once the application is running, you can access its Swagger website at http://lo
 ## Shutdown
 
 - To stop the application, go to the terminal where it is running and press `Ctrl+C`;
-- To stop and remove docker compose containers, network and volumes, go to a terminal and, inside `spring-data-jpa-relationships` root folder, run the following command:
+- To stop and remove docker compose containers, network and volumes, go to a terminal and, inside the `spring-data-jpa-relationships` root folder, run the following command:
   ```
   docker compose down -v
   ```
 
 ## Running Tests
 
-In a terminal and inside `spring-data-jpa-relationships` root folder, run the following command:
+In a terminal and inside the `spring-data-jpa-relationships` root folder, run the following command:
 ```
 ./mvnw clean test
 ```
