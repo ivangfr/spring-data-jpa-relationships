@@ -76,12 +76,12 @@ class ReviewerArticleControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createReviewerRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createReviewerRequest.name());
         assertThat(responseEntity.getBody().comments().size()).isEqualTo(0);
 
         Optional<Reviewer> reviewerOptional = reviewerRepository.findById(responseEntity.getBody().id());
         assertThat(reviewerOptional.isPresent()).isTrue();
-        reviewerOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(createReviewerRequest.getName()));
+        reviewerOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(createReviewerRequest.name()));
     }
 
     @Test
@@ -125,12 +125,12 @@ class ReviewerArticleControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().title()).isEqualTo(createArticleRequest.getTitle());
+        assertThat(responseEntity.getBody().title()).isEqualTo(createArticleRequest.title());
         assertThat(responseEntity.getBody().comments().size()).isEqualTo(0);
 
         Optional<Article> articleOptional = articleRepository.findById(responseEntity.getBody().id());
         assertThat(articleOptional.isPresent()).isTrue();
-        articleOptional.ifPresent(a -> assertThat(a.getTitle()).isEqualTo(createArticleRequest.getTitle()));
+        articleOptional.ifPresent(a -> assertThat(a.getTitle()).isEqualTo(createArticleRequest.title()));
     }
 
     @Test
@@ -187,14 +187,14 @@ class ReviewerArticleControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().text()).isEqualTo(createCommentRequest.getText());
+        assertThat(responseEntity.getBody().text()).isEqualTo(createCommentRequest.text());
         assertThat(responseEntity.getBody().reviewer().id()).isEqualTo(reviewer.getId());
         assertThat(responseEntity.getBody().article().id()).isEqualTo(article.getId());
 
         Optional<Comment> commentOptional = commentRepository.findById(responseEntity.getBody().id());
         assertThat(commentOptional.isPresent()).isTrue();
         commentOptional.ifPresent(c -> {
-            assertThat(c.getText()).isEqualTo(createCommentRequest.getText());
+            assertThat(c.getText()).isEqualTo(createCommentRequest.text());
             assertThat(c.getReviewer().getId()).isEqualTo(reviewer.getId());
             assertThat(c.getArticle().getId()).isEqualTo(article.getId());
         });

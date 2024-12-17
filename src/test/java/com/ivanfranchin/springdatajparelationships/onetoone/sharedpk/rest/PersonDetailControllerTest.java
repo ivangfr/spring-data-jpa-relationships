@@ -63,12 +63,12 @@ class PersonDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createPersonRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createPersonRequest.name());
         assertThat(responseEntity.getBody().personDetail()).isNull();
 
         Optional<Person> personOptional = personRepository.findById(responseEntity.getBody().id());
         assertThat(personOptional.isPresent()).isTrue();
-        personOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(createPersonRequest.getName()));
+        personOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(createPersonRequest.name()));
     }
 
     @Test
@@ -83,11 +83,11 @@ class PersonDetailControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updatePersonRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updatePersonRequest.name());
 
         Optional<Person> personOptional = personRepository.findById(person.getId());
         assertThat(personOptional.isPresent()).isTrue();
-        personOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(updatePersonRequest.getName()));
+        personOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(updatePersonRequest.name()));
     }
 
     @Test
@@ -122,13 +122,13 @@ class PersonDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getBody().personDetail()).isNotNull();
         assertThat(responseEntity.getBody().personDetail().id()).isEqualTo(person.getId());
         assertThat(responseEntity.getBody().personDetail().description())
-                .isEqualTo(createPersonDetailRequest.getDescription());
+                .isEqualTo(createPersonDetailRequest.description());
 
         Optional<Person> personOptional = personRepository.findById(responseEntity.getBody().id());
         assertThat(personOptional.isPresent()).isTrue();
         personOptional.ifPresent(p -> {
             assertThat(p.getPersonDetail().getId()).isEqualTo(person.getId());
-            assertThat(p.getPersonDetail().getDescription()).isEqualTo(createPersonDetailRequest.getDescription());
+            assertThat(p.getPersonDetail().getDescription()).isEqualTo(createPersonDetailRequest.description());
         });
     }
 
@@ -149,13 +149,13 @@ class PersonDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().personDetail()).isNotNull();
         assertThat(responseEntity.getBody().personDetail().description())
-                .isEqualTo(updatePersonDetailRequest.getDescription());
+                .isEqualTo(updatePersonDetailRequest.description());
 
         Optional<Person> personOptional = personRepository.findById(person.getId());
         assertThat(personOptional.isPresent()).isTrue();
         personOptional.ifPresent(p -> {
             assertThat(p.getPersonDetail()).isNotNull();
-            assertThat(p.getPersonDetail().getDescription()).isEqualTo(updatePersonDetailRequest.getDescription());
+            assertThat(p.getPersonDetail().getDescription()).isEqualTo(updatePersonDetailRequest.description());
         });
     }
 

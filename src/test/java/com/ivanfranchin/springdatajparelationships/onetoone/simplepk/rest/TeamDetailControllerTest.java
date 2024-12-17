@@ -62,12 +62,12 @@ class TeamDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createTeamRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createTeamRequest.name());
         assertThat(responseEntity.getBody().teamDetail()).isNull();
 
         Optional<Team> teamOptional = teamRepository.findById(responseEntity.getBody().id());
         assertThat(teamOptional.isPresent()).isTrue();
-        teamOptional.ifPresent(t -> assertThat(t.getName()).isEqualTo(createTeamRequest.getName()));
+        teamOptional.ifPresent(t -> assertThat(t.getName()).isEqualTo(createTeamRequest.name()));
     }
 
     @Test
@@ -82,11 +82,11 @@ class TeamDetailControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateTeamRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateTeamRequest.name());
 
         Optional<Team> teamOptional = teamRepository.findById(team.getId());
         assertThat(teamOptional.isPresent()).isTrue();
-        teamOptional.ifPresent(t -> assertThat(t.getName()).isEqualTo(updateTeamRequest.getName()));
+        teamOptional.ifPresent(t -> assertThat(t.getName()).isEqualTo(updateTeamRequest.name()));
     }
 
     @Test
@@ -120,13 +120,13 @@ class TeamDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().teamDetail()).isNotNull();
         assertThat(responseEntity.getBody().teamDetail().description())
-                .isEqualTo(createTeamDetailRequest.getDescription());
+                .isEqualTo(createTeamDetailRequest.description());
 
         Optional<Team> teamOptional = teamRepository.findById(team.getId());
         assertThat(teamOptional.isPresent()).isTrue();
         teamOptional.ifPresent(t -> {
             assertThat(t.getTeamDetail()).isNotNull();
-            assertThat(t.getTeamDetail().getDescription()).isEqualTo(createTeamDetailRequest.getDescription());
+            assertThat(t.getTeamDetail().getDescription()).isEqualTo(createTeamDetailRequest.description());
         });
     }
 
@@ -147,13 +147,13 @@ class TeamDetailControllerTest implements MyContainers {
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().teamDetail()).isNotNull();
         assertThat(responseEntity.getBody().teamDetail().description())
-                .isEqualTo(updateTeamDetailRequest.getDescription());
+                .isEqualTo(updateTeamDetailRequest.description());
 
         Optional<Team> teamOptional = teamRepository.findById(team.getId());
         assertThat(teamOptional.isPresent()).isTrue();
         teamOptional.ifPresent(t -> {
             assertThat(t.getTeamDetail()).isNotNull();
-            assertThat(t.getTeamDetail().getDescription()).isEqualTo(updateTeamDetailRequest.getDescription());
+            assertThat(t.getTeamDetail().getDescription()).isEqualTo(updateTeamDetailRequest.description());
         });
     }
 

@@ -71,12 +71,12 @@ class WriterBookControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createWriterRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createWriterRequest.name());
         assertThat(responseEntity.getBody().books().size()).isEqualTo(0);
 
         Optional<Writer> writerOptional = writerRepository.findById(responseEntity.getBody().id());
         assertThat(writerOptional.isPresent()).isTrue();
-        writerOptional.ifPresent(w -> assertThat(w.getName()).isEqualTo(createWriterRequest.getName()));
+        writerOptional.ifPresent(w -> assertThat(w.getName()).isEqualTo(createWriterRequest.name()));
     }
 
     @Test
@@ -91,11 +91,11 @@ class WriterBookControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateWriterRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateWriterRequest.name());
 
         Optional<Writer> writerOptional = writerRepository.findById(writer.getId());
         assertThat(writerOptional.isPresent()).isTrue();
-        writerOptional.ifPresent(w -> assertThat(w.getName()).isEqualTo(updateWriterRequest.getName()));
+        writerOptional.ifPresent(w -> assertThat(w.getName()).isEqualTo(updateWriterRequest.name()));
     }
 
     @Test
@@ -196,12 +196,12 @@ class WriterBookControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createBookRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createBookRequest.name());
         assertThat(responseEntity.getBody().writers().size()).isEqualTo(0);
 
         Optional<Book> bookOptional = bookRepository.findById(responseEntity.getBody().id());
         assertThat(bookOptional.isPresent()).isTrue();
-        bookOptional.ifPresent(b -> assertThat(b.getName()).isEqualTo(createBookRequest.getName()));
+        bookOptional.ifPresent(b -> assertThat(b.getName()).isEqualTo(createBookRequest.name()));
     }
 
     @Test
@@ -216,11 +216,11 @@ class WriterBookControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateBookRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateBookRequest.name());
 
         Optional<Book> bookOptional = bookRepository.findById(book.getId());
         assertThat(bookOptional.isPresent()).isTrue();
-        bookOptional.ifPresent(b -> assertThat(b.getName()).isEqualTo(updateBookRequest.getName()));
+        bookOptional.ifPresent(b -> assertThat(b.getName()).isEqualTo(updateBookRequest.name()));
     }
 
     @Test

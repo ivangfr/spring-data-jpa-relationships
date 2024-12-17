@@ -69,12 +69,12 @@ class PlayerWeaponControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createPlayerRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createPlayerRequest.name());
         assertThat(responseEntity.getBody().weapons().size()).isEqualTo(0);
 
         Optional<Player> playerOptional = playerRepository.findById(responseEntity.getBody().id());
         assertThat(playerOptional.isPresent()).isTrue();
-        playerOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(createPlayerRequest.getName()));
+        playerOptional.ifPresent(p -> assertThat(p.getName()).isEqualTo(createPlayerRequest.name()));
     }
 
     @Test
@@ -124,7 +124,7 @@ class PlayerWeaponControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createWeaponRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createWeaponRequest.name());
 
         Optional<Weapon> weaponOptional = weaponRepository.findById(
                 new WeaponPk(responseEntity.getBody().id(), player.getId()));

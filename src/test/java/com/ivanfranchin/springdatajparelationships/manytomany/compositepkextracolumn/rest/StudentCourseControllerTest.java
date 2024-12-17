@@ -80,12 +80,12 @@ class StudentCourseControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createStudentRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createStudentRequest.name());
         assertThat(responseEntity.getBody().courses().size()).isEqualTo(0);
 
         Optional<Student> studentOptional = studentRepository.findById(responseEntity.getBody().id());
         assertThat(studentOptional.isPresent()).isTrue();
-        studentOptional.ifPresent(s -> assertThat(s.getName()).isEqualTo(createStudentRequest.getName()));
+        studentOptional.ifPresent(s -> assertThat(s.getName()).isEqualTo(createStudentRequest.name()));
     }
 
     @Test
@@ -100,11 +100,11 @@ class StudentCourseControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateStudentRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateStudentRequest.name());
 
         Optional<Student> studentOptional = studentRepository.findById(student.getId());
         assertThat(studentOptional.isPresent()).isTrue();
-        studentOptional.ifPresent(s -> assertThat(s.getName()).isEqualTo(updateStudentRequest.getName()));
+        studentOptional.ifPresent(s -> assertThat(s.getName()).isEqualTo(updateStudentRequest.name()));
     }
 
     @Test
@@ -148,12 +148,12 @@ class StudentCourseControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createCourseRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createCourseRequest.name());
         assertThat(responseEntity.getBody().students().size()).isEqualTo(0);
 
         Optional<Course> courseOptional = courseRepository.findById(responseEntity.getBody().id());
         assertThat(courseOptional.isPresent()).isTrue();
-        courseOptional.ifPresent(c -> assertThat(c.getName()).isEqualTo(createCourseRequest.getName()));
+        courseOptional.ifPresent(c -> assertThat(c.getName()).isEqualTo(createCourseRequest.name()));
     }
 
     @Test
@@ -168,11 +168,11 @@ class StudentCourseControllerTest implements MyContainers {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateCourseRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateCourseRequest.name());
 
         Optional<Course> courseOptional = courseRepository.findById(course.getId());
         assertThat(courseOptional.isPresent()).isTrue();
-        courseOptional.ifPresent(c -> assertThat(c.getName()).isEqualTo(updateCourseRequest.getName()));
+        courseOptional.ifPresent(c -> assertThat(c.getName()).isEqualTo(updateCourseRequest.name()));
     }
 
     @Test
@@ -288,7 +288,7 @@ class StudentCourseControllerTest implements MyContainers {
         assertThat(responseEntity.getBody().student().id()).isEqualTo(student.getId());
         assertThat(responseEntity.getBody().student().name()).isEqualTo(student.getName());
         assertThat(responseEntity.getBody().registrationDate()).isNotNull();
-        assertThat(responseEntity.getBody().grade()).isEqualTo(updateCourseStudentRequest.getGrade());
+        assertThat(responseEntity.getBody().grade()).isEqualTo(updateCourseStudentRequest.grade());
 
         CourseStudentPk courseStudentPk = new CourseStudentPk(course.getId(), student.getId());
         Optional<CourseStudent> courseStudentOptional = courseStudentRepository.findById(courseStudentPk);
@@ -297,7 +297,7 @@ class StudentCourseControllerTest implements MyContainers {
             assertThat(cs.getStudent()).isEqualTo(student);
             assertThat(cs.getCourse()).isEqualTo(course);
             assertThat(cs.getRegistrationDate()).isNotNull();
-            assertThat(cs.getGrade()).isEqualTo(updateCourseStudentRequest.getGrade());
+            assertThat(cs.getGrade()).isEqualTo(updateCourseStudentRequest.grade());
         });
     }
 

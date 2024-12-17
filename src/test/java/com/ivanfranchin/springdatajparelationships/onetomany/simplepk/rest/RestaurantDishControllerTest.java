@@ -71,12 +71,12 @@ class RestaurantDishControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createRestaurantRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createRestaurantRequest.name());
         assertThat(responseEntity.getBody().dishes().size()).isEqualTo(0);
 
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(responseEntity.getBody().id());
         assertThat(restaurantOptional.isPresent()).isTrue();
-        restaurantOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(createRestaurantRequest.getName()));
+        restaurantOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(createRestaurantRequest.name()));
     }
 
     @Test
@@ -92,12 +92,12 @@ class RestaurantDishControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isEqualTo(restaurant.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateRestaurantRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateRestaurantRequest.name());
         assertThat(responseEntity.getBody().dishes().size()).isEqualTo(0);
 
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurant.getId());
         assertThat(restaurantOptional.isPresent()).isTrue();
-        restaurantOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(updateRestaurantRequest.getName()));
+        restaurantOptional.ifPresent(r -> assertThat(r.getName()).isEqualTo(updateRestaurantRequest.name()));
     }
 
     @Test
@@ -147,13 +147,13 @@ class RestaurantDishControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isNotNull();
-        assertThat(responseEntity.getBody().name()).isEqualTo(createDishRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(createDishRequest.name());
 
         Optional<Dish> dishOptional = dishRepository.findById(responseEntity.getBody().id());
         assertThat(dishOptional.isPresent()).isTrue();
         dishOptional.ifPresent(d -> {
             assertThat(d.getRestaurant().getId()).isEqualTo(restaurant.getId());
-            assertThat(d.getName()).isEqualTo(createDishRequest.getName());
+            assertThat(d.getName()).isEqualTo(createDishRequest.name());
         });
 
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurant.getId());
@@ -182,11 +182,11 @@ class RestaurantDishControllerTest implements MyContainers {
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().id()).isEqualTo(dish.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(updateDishRequest.getName());
+        assertThat(responseEntity.getBody().name()).isEqualTo(updateDishRequest.name());
 
         Optional<Dish> dishOptional = dishRepository.findById(dish.getId());
         assertThat(dishOptional.isPresent()).isTrue();
-        dishOptional.ifPresent(d -> assertThat(d.getName()).isEqualTo(updateDishRequest.getName()));
+        dishOptional.ifPresent(d -> assertThat(d.getName()).isEqualTo(updateDishRequest.name()));
     }
 
     @Test

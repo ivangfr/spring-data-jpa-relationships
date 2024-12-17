@@ -2,16 +2,6 @@ package com.ivanfranchin.springdatajparelationships.manytomany.compositepkextrac
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class CreateStudentRequest {
-
-    @Schema(example = "Ivan Franchin")
-    @NotBlank
-    private String name;
+public record CreateStudentRequest(@Schema(example = "Ivan Franchin") @NotBlank String name) {
 }
