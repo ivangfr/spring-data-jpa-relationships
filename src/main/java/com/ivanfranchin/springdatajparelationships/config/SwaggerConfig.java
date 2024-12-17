@@ -14,7 +14,7 @@ public class SwaggerConfig {
     private String applicationName;
 
     @Bean
-    public OpenAPI customOpenAPI() {
+    OpenAPI customOpenAPI() {
         return new OpenAPI().components(new Components()).info(new Info().title(applicationName));
     }
 }
