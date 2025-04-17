@@ -20,20 +20,20 @@ On [ivangfr.github.io](https://ivangfr.github.io), I have compiled my Proof-of-C
 
 ## Prerequisites
 
-- [`Java 21+`](https://www.oracle.com/java/technologies/downloads/#java21)
-- Some containerization tool [`Docker`](https://www.docker.com), [`Podman`](https://podman.io), etc.
+- [`Java 21`](https://www.oracle.com/java/technologies/downloads/#java21) or higher;
+- A containerization tool (e.g., [`Docker`](https://www.docker.com), [`Podman`](https://podman.io), etc.)
 
 ## Start Environment
 
 In a terminal and inside the `spring-data-jpa-relationships` root folder, run the following command:
-```
+```bash
 docker compose up -d
 ```
 
 ## Running application using Maven
 
 In a terminal and inside the `spring-data-jpa-relationships` root folder, run the command below:
-```
+```bash
 ./mvnw clean spring-boot:run
 ```
 
@@ -42,7 +42,7 @@ Once the application is running, you can access its Swagger website at http://lo
 ## Useful Commands
 
 - **Postgres**
-  ```
+  ```bash
   docker exec -it postgres psql -U postgres -d jparelationshipsdb
   \d persons
   select * from persons;
@@ -53,14 +53,14 @@ Once the application is running, you can access its Swagger website at http://lo
 
 - To stop the application, go to the terminal where it is running and press `Ctrl+C`;
 - To stop and remove docker compose containers, network and volumes, go to a terminal and, inside the `spring-data-jpa-relationships` root folder, run the following command:
-  ```
+  ```bash
   docker compose down -v
   ```
 
 ## Running Tests
 
 In a terminal and inside the `spring-data-jpa-relationships` root folder, run the following command:
-```
+```bash
 ./mvnw clean test
 ```
 
