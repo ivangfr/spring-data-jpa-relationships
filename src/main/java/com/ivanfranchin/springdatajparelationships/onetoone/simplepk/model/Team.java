@@ -36,7 +36,9 @@ public class Team {
     }
 
     public void removeTeamDetail() {
-        this.teamDetail.setTeam(null);
-        this.teamDetail = null;
+        if (this.teamDetail != null) {
+            this.teamDetail.setTeam(null);
+            this.teamDetail = null;
+        }
     }
 }

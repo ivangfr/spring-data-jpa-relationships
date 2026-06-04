@@ -97,14 +97,10 @@ class PersonDetailControllerTest implements MyContainers {
         Person person = personRepository.save(getDefaultPerson());
 
         String url = String.format(API_PERSONS_PERSON_ID_URL, person.getId());
-        ResponseEntity<PersonResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, PersonResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(person.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(person.getName());
-        assertThat(responseEntity.getBody().personDetail()).isNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Person> personOptional = personRepository.findById(person.getId());
         assertThat(personOptional.isPresent()).isFalse();
@@ -119,7 +115,7 @@ class PersonDetailControllerTest implements MyContainers {
         ResponseEntity<PersonResponse> responseEntity = testRestTemplate.postForEntity(
                 url, createPersonDetailRequest, PersonResponse.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().personDetail()).isNotNull();
         assertThat(responseEntity.getBody().personDetail().id()).isEqualTo(person.getId());
@@ -171,12 +167,10 @@ class PersonDetailControllerTest implements MyContainers {
         person = personRepository.save(person);
 
         String url = String.format(API_PERSONS_PERSON_ID_PERSON_DETAILS_URL, person.getId());
-        ResponseEntity<PersonResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, PersonResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().personDetail()).isNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Person> personOptional = personRepository.findById(person.getId());
         assertThat(personOptional.isPresent()).isTrue();

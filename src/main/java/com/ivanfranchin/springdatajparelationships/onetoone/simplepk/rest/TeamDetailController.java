@@ -52,11 +52,11 @@ public class TeamDetailController {
         return teamMapper.toTeamResponse(team);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{teamId}")
-    public TeamResponse deleteTeam(@PathVariable Long teamId) {
+    public void deleteTeam(@PathVariable Long teamId) {
         Team team = teamService.validateAndGetTeam(teamId);
         teamService.deleteTeam(team);
-        return teamMapper.toTeamResponse(team);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -80,11 +80,11 @@ public class TeamDetailController {
         return teamMapper.toTeamResponse(team);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{teamId}/team-details")
-    public TeamResponse deleteTeamDetail(@PathVariable Long teamId) {
+    public void deleteTeamDetail(@PathVariable Long teamId) {
         Team team = teamService.validateAndGetTeam(teamId);
         team.removeTeamDetail();
-        team = teamService.saveTeam(team);
-        return teamMapper.toTeamResponse(team);
+        teamService.saveTeam(team);
     }
 }

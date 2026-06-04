@@ -84,14 +84,10 @@ class PlayerWeaponControllerTest implements MyContainers {
         Player player = playerRepository.save(getDefaultPlayer());
 
         String url = String.format("/api/players/%s", player.getId());
-        ResponseEntity<PlayerResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, PlayerResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(player.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(player.getName());
-        assertThat(responseEntity.getBody().weapons().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Player> playerOptional = playerRepository.findById(player.getId());
         assertThat(playerOptional.isPresent()).isFalse();
@@ -150,15 +146,12 @@ class PlayerWeaponControllerTest implements MyContainers {
         final Weapon weapon = weaponRepository.save(weaponAux);
 
         String url = String.format(API_PLAYERS_PLAYER_ID_WEAPONS_WEAPON_ID_URL, player.getId(), weapon.getId());
-        ResponseEntity<WeaponResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, WeaponResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(weapon.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(weapon.getName());
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
-        Optional<Weapon> weaponOptional = weaponRepository.findById(new WeaponPk(player.getId(), weapon.getId()));
+        Optional<Weapon> weaponOptional = weaponRepository.findById(new WeaponPk(weapon.getId(), player.getId()));
         assertThat(weaponOptional.isPresent()).isFalse();
 
         Optional<Player> playerOptional = playerRepository.findById(player.getId());
@@ -177,7 +170,7 @@ class PlayerWeaponControllerTest implements MyContainers {
 
     private Weapon getDefaultWeapon() {
         Weapon weapon = new Weapon();
-        weapon.setId(1L);
+        weapon.setId(0L);
         weapon.setName("Machine Gun");
         return weapon;
     }

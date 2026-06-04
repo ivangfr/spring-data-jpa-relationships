@@ -107,14 +107,10 @@ class RestaurantDishControllerTest implements MyContainers {
         Restaurant restaurant = restaurantRepository.save(getDefaultRestaurant());
 
         String url = String.format(API_RESTAURANTS_RESTAURANT_ID_URL, restaurant.getId());
-        ResponseEntity<RestaurantResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, RestaurantResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(restaurant.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(restaurant.getName());
-        assertThat(responseEntity.getBody().dishes().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(restaurant.getId());
         assertThat(restaurantOptional.isPresent()).isFalse();
@@ -200,13 +196,10 @@ class RestaurantDishControllerTest implements MyContainers {
         final Dish dish = dishRepository.save(dishAux);
 
         String url = String.format(API_RESTAURANTS_RESTAURANT_ID_DISHES_DISH_ID_URL, restaurant.getId(), dish.getId());
-        ResponseEntity<DishResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, DishResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(dish.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(dish.getName());
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Dish> dishOptional = dishRepository.findById(dish.getId());
         assertThat(dishOptional.isPresent()).isFalse();

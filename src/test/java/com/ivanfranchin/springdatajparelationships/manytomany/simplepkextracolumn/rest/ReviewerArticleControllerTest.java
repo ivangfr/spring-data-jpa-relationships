@@ -91,14 +91,10 @@ class ReviewerArticleControllerTest implements MyContainers {
         Reviewer reviewer = reviewerRepository.save(getDefaultReviewer());
 
         String url = String.format(API_REVIEWERS_REVIEWER_ID_URL, reviewer.getId());
-        ResponseEntity<ReviewerResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, ReviewerResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(reviewer.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(reviewer.getName());
-        assertThat(responseEntity.getBody().comments().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Reviewer> reviewerOptional = reviewerRepository.findById(reviewer.getId());
         assertThat(reviewerOptional.isPresent()).isFalse();
@@ -140,14 +136,10 @@ class ReviewerArticleControllerTest implements MyContainers {
         Article article = articleRepository.save(getDefaultArticle());
 
         String url = String.format(API_ARTICLES_ARTICLE_ID_URL, article.getId());
-        ResponseEntity<ArticleResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, ArticleResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(article.getId());
-        assertThat(responseEntity.getBody().title()).isEqualTo(article.getTitle());
-        assertThat(responseEntity.getBody().comments().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Article> articleOptional = articleRepository.findById(article.getId());
         assertThat(articleOptional.isPresent()).isFalse();
@@ -227,14 +219,10 @@ class ReviewerArticleControllerTest implements MyContainers {
         comment = commentRepository.save(comment);
 
         String url = String.format(API_COMMENTS_COMMENT_ID_URL, comment.getId());
-        ResponseEntity<CommentResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, CommentResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(comment.getId());
-        assertThat(responseEntity.getBody().reviewer().id()).isEqualTo(comment.getReviewer().getId());
-        assertThat(responseEntity.getBody().article().id()).isEqualTo(comment.getArticle().getId());
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Comment> commentOptional = commentRepository.findById(comment.getId());
         assertThat(commentOptional.isPresent()).isFalse();

@@ -68,11 +68,11 @@ public class StudentCourseController {
         return studentMapper.toStudentResponse(student);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/students/{studentId}")
-    public StudentResponse deleteStudent(@PathVariable Long studentId) {
+    public void deleteStudent(@PathVariable Long studentId) {
         Student student = studentService.validateAndGetStudent(studentId);
         studentService.deleteStudent(student);
-        return studentMapper.toStudentResponse(student);
     }
 
     // ------
@@ -101,11 +101,11 @@ public class StudentCourseController {
         return courseMapper.toCourseResponse(course);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/courses/{courseId}")
-    public CourseResponse deleteCourse(@PathVariable Long courseId) {
+    public void deleteCourse(@PathVariable Long courseId) {
         Course course = courseService.validateAndGetCourse(courseId);
         courseService.deleteCourse(course);
-        return courseMapper.toCourseResponse(course);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -122,11 +122,11 @@ public class StudentCourseController {
         return courseStudentMapper.toCourseStudentResponse(courseStudent);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/courses/{courseId}/students/{studentId}")
-    public CourseStudentResponse unregisterStudentOfCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
+    public void unregisterStudentOfCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
         CourseStudent courseStudent = courseStudentService.validateAndGetCourseStudent(courseId, studentId);
         courseStudentService.deleteCourseStudent(courseStudent);
-        return courseStudentMapper.toCourseStudentResponse(courseStudent);
     }
 
     @PutMapping("/courses/{courseId}/students/{studentId}")

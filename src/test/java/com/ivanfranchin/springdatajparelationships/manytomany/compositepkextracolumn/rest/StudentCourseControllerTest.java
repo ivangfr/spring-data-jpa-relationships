@@ -114,14 +114,10 @@ class StudentCourseControllerTest implements MyContainers {
         Student student = studentRepository.save(getDefaultStudent());
 
         String url = String.format(API_STUDENTS_STUDENT_ID_URL, student.getId());
-        ResponseEntity<StudentResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, StudentResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(student.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(student.getName());
-        assertThat(responseEntity.getBody().courses().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Student> studentOptional = studentRepository.findById(student.getId());
         assertThat(studentOptional.isPresent()).isFalse();
@@ -182,14 +178,10 @@ class StudentCourseControllerTest implements MyContainers {
         Course course = courseRepository.save(getDefaultCourse());
 
         String url = String.format(API_COURSES_COURSE_ID_URL, course.getId());
-        ResponseEntity<CourseResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, CourseResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(course.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(course.getName());
-        assertThat(responseEntity.getBody().students().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Course> courseOptional = courseRepository.findById(course.getId());
         assertThat(courseOptional.isPresent()).isFalse();
@@ -242,16 +234,10 @@ class StudentCourseControllerTest implements MyContainers {
         courseStudentRepository.save(courseStudent);
 
         String url = String.format(API_COURSES_COURSE_ID_STUDENTS_STUDENT_ID_URL, course.getId(), student.getId());
-        ResponseEntity<CourseStudentResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, CourseStudentResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().course().id()).isEqualTo(course.getId());
-        assertThat(responseEntity.getBody().course().name()).isEqualTo(course.getName());
-        assertThat(responseEntity.getBody().student().id()).isEqualTo(student.getId());
-        assertThat(responseEntity.getBody().student().name()).isEqualTo(student.getName());
-        assertThat(responseEntity.getBody().registrationDate()).isNotNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Course> courseOptional = courseRepository.findById(course.getId());
         assertThat(courseOptional.isPresent()).isTrue();

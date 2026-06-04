@@ -53,13 +53,14 @@ public class PersonDetailController {
         return personMapper.toPersonResponse(person);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{personId}")
-    public PersonResponse deletePerson(@PathVariable Long personId) {
+    public void deletePerson(@PathVariable Long personId) {
         Person person = personService.validateAndGetPerson(personId);
         personService.deletePerson(person);
-        return personMapper.toPersonResponse(person);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{personId}/person-details")
     public PersonResponse addPersonDetail(@PathVariable Long personId,
                                           @Valid @RequestBody CreatePersonDetailRequest createPersonDetailRequest) {
@@ -81,11 +82,11 @@ public class PersonDetailController {
     }
 
     // Hibernate doesn't allow to delete the person-details
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{personId}/person-details")
-    public PersonResponse deletePersonDetail(@PathVariable Long personId) {
+    public void deletePersonDetail(@PathVariable Long personId) {
         Person person = personService.validateAndGetPerson(personId);
         person.removePersonDetail();
-        person = personService.savePerson(person);
-        return personMapper.toPersonResponse(person);
+        personService.savePerson(person);
     }
 }

@@ -61,12 +61,12 @@ public class WriterBookController {
         return writerMapper.toWriterResponse(writer);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/writers/{writerId}")
-    public WriterResponse deleteWriter(@PathVariable Long writerId) {
+    public void deleteWriter(@PathVariable Long writerId) {
         Writer writer = writerService.validateAndGetWriter(writerId);
         writer.getBooks().forEach(book -> book.removeWriter(writer));
         writerService.deleteWriter(writer);
-        return writerMapper.toWriterResponse(writer);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -79,13 +79,13 @@ public class WriterBookController {
         return writerMapper.toWriterResponse(writer);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/writers/{writerId}/books/{bookId}")
-    public WriterResponse removeWriterBook(@PathVariable Long writerId, @PathVariable Long bookId) {
+    public void removeWriterBook(@PathVariable Long writerId, @PathVariable Long bookId) {
         Writer writer = writerService.validateAndGetWriter(writerId);
         Book book = bookService.validateAndGetBook(bookId);
         writer.removeBook(book);
-        writer = writerService.saveWriter(writer);
-        return writerMapper.toWriterResponse(writer);
+        writerService.saveWriter(writer);
     }
 
     // -----
@@ -113,12 +113,12 @@ public class WriterBookController {
         return bookMapper.toBookResponse(book);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/books/{bookId}")
-    public BookResponse deleteBook(@PathVariable Long bookId) {
+    public void deleteBook(@PathVariable Long bookId) {
         Book book = bookService.validateAndGetBook(bookId);
         book.getWriters().forEach(writer -> writer.removeBook(book));
         bookService.deleteBook(book);
-        return bookMapper.toBookResponse(book);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -131,12 +131,12 @@ public class WriterBookController {
         return bookMapper.toBookResponse(book);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/books/{bookId}/writers/{writerId}")
-    public BookResponse removeBookWriter(@PathVariable Long bookId, @PathVariable Long writerId) {
+    public void removeBookWriter(@PathVariable Long bookId, @PathVariable Long writerId) {
         Book book = bookService.validateAndGetBook(bookId);
         Writer writer = writerService.validateAndGetWriter(writerId);
         book.removeWriter(writer);
-        book = bookService.saveBook(book);
-        return bookMapper.toBookResponse(book);
+        bookService.saveBook(book);
     }
 }

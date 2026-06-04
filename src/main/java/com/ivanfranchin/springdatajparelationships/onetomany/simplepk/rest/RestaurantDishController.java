@@ -61,11 +61,11 @@ public class RestaurantDishController {
         return restaurantMapper.toRestaurantResponse(restaurant);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{restaurantId}")
-    public RestaurantResponse deleteRestaurant(@PathVariable Long restaurantId) {
+    public void deleteRestaurant(@PathVariable Long restaurantId) {
         Restaurant restaurant = restaurantService.validateAndGetRestaurant(restaurantId);
         restaurantService.deleteRestaurant(restaurant);
-        return restaurantMapper.toRestaurantResponse(restaurant);
     }
 
     //-----
@@ -98,11 +98,11 @@ public class RestaurantDishController {
         return dishMapper.toDishResponse(dish);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{restaurantId}/dishes/{dishId}")
-    public DishResponse deleteDish(@PathVariable Long restaurantId, @PathVariable Long dishId) {
+    public void deleteDish(@PathVariable Long restaurantId, @PathVariable Long dishId) {
         Dish dish = dishService.validateAndGetDish(dishId, restaurantId);
         dish.removeRestaurant();
         dishService.deleteDish(dish);
-        return dishMapper.toDishResponse(dish);
     }
 }

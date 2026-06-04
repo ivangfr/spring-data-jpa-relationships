@@ -56,11 +56,11 @@ public class ReviewerArticleController {
         return reviewerMapper.toReviewerResponse(reviewer);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/reviewers/{reviewerId}")
-    public ReviewerResponse deleteReviewer(@PathVariable Long reviewerId) {
+    public void deleteReviewer(@PathVariable Long reviewerId) {
         Reviewer reviewer = reviewerService.validateAndGetReviewer(reviewerId);
         reviewerService.deleteReviewer(reviewer);
-        return reviewerMapper.toReviewerResponse(reviewer);
     }
 
     // -------
@@ -80,11 +80,11 @@ public class ReviewerArticleController {
         return articleMapper.toArticleResponse(article);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/articles/{articleId}")
-    public ArticleResponse deleteArticle(@PathVariable Long articleId) {
+    public void deleteArticle(@PathVariable Long articleId) {
         Article article = articleService.validateAndGetArticle(articleId);
         articleService.deleteArticle(article);
-        return articleMapper.toArticleResponse(article);
     }
 
     // --------
@@ -104,10 +104,10 @@ public class ReviewerArticleController {
         return commentMapper.toCommentResponse(comment);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/comments/{commentId}")
-    public CommentResponse deleteComment(@PathVariable Long commentId) {
+    public void deleteComment(@PathVariable Long commentId) {
         Comment comment = commentService.validateAndGetComment(commentId);
         commentService.deleteComment(comment);
-        return commentMapper.toCommentResponse(comment);
     }
 }

@@ -36,7 +36,9 @@ public class Person {
     }
 
     public void removePersonDetail() {
-        this.personDetail.setPerson(null);
-        this.personDetail = null;
+        if (this.personDetail != null) {
+            this.personDetail.setPerson(null);
+            this.personDetail = null;
+        }
     }
 }

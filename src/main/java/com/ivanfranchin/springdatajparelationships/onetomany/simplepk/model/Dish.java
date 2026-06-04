@@ -37,7 +37,9 @@ public class Dish {
     }
 
     public void removeRestaurant() {
-        this.restaurant.getDishes().remove(this);
-        this.restaurant = null;
+        if (this.restaurant != null) {
+            this.restaurant.getDishes().remove(this);
+            this.restaurant = null;
+        }
     }
 }

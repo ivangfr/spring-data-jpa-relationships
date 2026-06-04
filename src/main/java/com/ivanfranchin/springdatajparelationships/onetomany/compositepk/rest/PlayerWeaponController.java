@@ -49,11 +49,11 @@ public class PlayerWeaponController {
         return playerMapper.toPlayerResponse(player);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{playerId}")
-    public PlayerResponse deletePlayer(@PathVariable Long playerId) {
+    public void deletePlayer(@PathVariable Long playerId) {
         Player player = playerService.validateAndGetPlayer(playerId);
         playerService.deletePlayer(player);
-        return playerMapper.toPlayerResponse(player);
     }
 
     // ------
@@ -73,17 +73,17 @@ public class PlayerWeaponController {
 
         // to avoid "org.hibernate.HibernateException: No part of a composite identifier may be null"
         // in spite of the fact that it's set a fixed value here, hibernate will generate a new value
-        weapon.setId(1L);
+        weapon.setId(0L);
         weapon.setPlayer(player);
         weapon = weaponService.saveWeapon(weapon);
 
         return weaponMapper.toWeaponResponse(weapon);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{playerId}/weapons/{weaponId}")
-    public WeaponResponse removeWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
+    public void removeWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
         Weapon weapon = weaponService.validateAndGetWeapon(playerId, weaponId);
         weaponService.deleteWeapon(weapon);
-        return weaponMapper.toWeaponResponse(weapon);
     }
 }

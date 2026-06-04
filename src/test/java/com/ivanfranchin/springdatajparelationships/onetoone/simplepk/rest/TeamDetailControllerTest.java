@@ -96,14 +96,10 @@ class TeamDetailControllerTest implements MyContainers {
         Team team = teamRepository.save(getDefaultTeam());
 
         String url = String.format(API_TEAMS_TEAM_ID_URL, team.getId());
-        ResponseEntity<TeamResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, TeamResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(team.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(team.getName());
-        assertThat(responseEntity.getBody().teamDetail()).isNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Team> teamOptional = teamRepository.findById(team.getId());
         assertThat(teamOptional.isPresent()).isFalse();
@@ -166,12 +162,10 @@ class TeamDetailControllerTest implements MyContainers {
         team = teamRepository.save(team);
 
         String url = String.format(API_TEAMS_TEAM_ID_TEAMS_DETAILS_URL, team.getId());
-        ResponseEntity<TeamResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, TeamResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().teamDetail()).isNull();
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Team> teamOptional = teamRepository.findById(team.getId());
         assertThat(teamOptional.isPresent()).isTrue();

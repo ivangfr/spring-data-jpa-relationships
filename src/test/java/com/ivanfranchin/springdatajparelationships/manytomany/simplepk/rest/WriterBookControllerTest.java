@@ -105,14 +105,10 @@ class WriterBookControllerTest implements MyContainers {
         Writer writer = writerRepository.save(getDefaultWriter());
 
         String url = String.format(API_WRITERS_WRITER_ID_URL, writer.getId());
-        ResponseEntity<WriterResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, WriterResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(writer.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(writer.getName());
-        assertThat(responseEntity.getBody().books().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Writer> writerOptional = writerRepository.findById(writer.getId());
         assertThat(writerOptional.isPresent()).isFalse();
@@ -157,14 +153,10 @@ class WriterBookControllerTest implements MyContainers {
         writer = writerRepository.save(writer);
 
         String url = String.format(API_WRITERS_WRITER_ID_BOOKS_BOOK_ID_URL, writer.getId(), book.getId());
-        ResponseEntity<WriterResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, WriterResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(writer.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(writer.getName());
-        assertThat(responseEntity.getBody().books().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Writer> writerOptional = writerRepository.findById(writer.getId());
         assertThat(writerOptional.isPresent()).isTrue();
@@ -230,14 +222,10 @@ class WriterBookControllerTest implements MyContainers {
         Book book = bookRepository.save(getDefaultBook());
 
         String url = String.format(API_BOOKS_BOOK_ID_URL, book.getId());
-        ResponseEntity<BookResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, BookResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(book.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(book.getName());
-        assertThat(responseEntity.getBody().writers().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Book> bookOptional = bookRepository.findById(book.getId());
         assertThat(bookOptional.isPresent()).isFalse();
@@ -279,14 +267,10 @@ class WriterBookControllerTest implements MyContainers {
         Writer writer = writerRepository.save(getDefaultWriter());
 
         String url = String.format(API_BOOKS_BOOK_ID_WRITERS_WRITER_ID_URL, book.getId(), writer.getId());
-        ResponseEntity<BookResponse> responseEntity = testRestTemplate.exchange(
-                url, HttpMethod.DELETE, null, BookResponse.class);
+        ResponseEntity<Void> responseEntity = testRestTemplate.exchange(
+                url, HttpMethod.DELETE, null, Void.class);
 
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isNotNull();
-        assertThat(responseEntity.getBody().id()).isEqualTo(book.getId());
-        assertThat(responseEntity.getBody().name()).isEqualTo(book.getName());
-        assertThat(responseEntity.getBody().writers().size()).isEqualTo(0);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         Optional<Book> bookOptional = bookRepository.findById(book.getId());
         assertThat(bookOptional.isPresent()).isTrue();
