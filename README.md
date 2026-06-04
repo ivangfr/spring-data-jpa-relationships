@@ -1,5 +1,8 @@
 # spring-data-jpa-relationships
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ivan.franchin-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ivan.franchin)
+
 The goal of this project is to study the JPA relationships: `one-to-one`, `one-to-many` / `many-to-one`, and `many-to-many`.
 
 ## Proof-of-Concepts & Articles
@@ -52,7 +55,7 @@ Once the application is running, you can access its Swagger website at http://lo
 ## Shutdown
 
 - To stop the application, go to the terminal where it is running and press `Ctrl+C`;
-- To stop and remove docker compose containers, network and volumes, go to a terminal and, inside the `spring-data-jpa-relationships` root folder, run the following command:
+- To stop and remove docker compose containers, networks and volumes, go to a terminal and, inside the `spring-data-jpa-relationships` root folder, run the following command:
   ```bash
   docker compose down -v
   ```
@@ -107,6 +110,16 @@ In a terminal and inside the `spring-data-jpa-relationships` root folder, run th
 ![students_courses](documentation/students_courses.png)
 
 \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Composite Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-composite-primary-key-and-extra-column-a939b107c7cd)
+
+## Support
+
+If you find this useful, consider buying me a coffee:
+
+<a href="https://buymeacoffee.com/ivan.franchin"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50"></a>
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
 
 ## References
 
