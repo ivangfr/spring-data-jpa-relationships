@@ -71,43 +71,142 @@ In a terminal and inside the `spring-data-jpa-relationships` root folder, run th
 
 ### One-to-One with Simple Primary Key
 
-![teams_team_details](documentation/teams_team_details.png)
+```mermaid
+erDiagram
+    teams {
+        bigint id PK
+        varchar name
+    }
+    team_details {
+        bigint id PK
+        bigint team_id FK
+        varchar description
+    }
+    teams ||--|| team_details : "has"
+```
 
 \[**Medium**\]: [**Understanding Relationships in JPA: One-to-One with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-simple-primary-key-7c32f7e13a6a)
 
 ### One-to-One with Shared Primary Key
 
-![persons_person_details](documentation/persons_person_details.png)
+```mermaid
+erDiagram
+    persons {
+        bigint id PK
+        varchar name
+    }
+    person_details {
+        bigint id PK, FK
+        varchar description
+    }
+    persons ||--|| person_details : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: One-to-One with Shared Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-one-with-shared-primary-key-36596416fe56)
 
 ### One-to-Many with Simple Primary Key
 
-![restaurants_dishes](documentation/restaurants_dishes.png)
+```mermaid
+erDiagram
+    restaurants {
+        bigint id PK
+        varchar name
+    }
+    dishes {
+        bigint id PK
+        bigint restaurant_id FK
+        varchar name
+    }
+    restaurants ||--o{ dishes : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-simple-primary-key-e2e975c67c31)
 
 ### One-to-Many with Composite Primary Key
 
-![players_weapons](documentation/players_weapons.png)
+```mermaid
+erDiagram
+    players {
+        bigint id PK
+        varchar name
+    }
+    weapons {
+        bigint id PK
+        bigint player_id PK, FK
+        varchar name
+    }
+    players ||--o{ weapons : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: One-to-Many with Composite Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-one-to-many-with-composite-primary-key-1d7724a2bf63)
 
 ### Many-to-Many with Simple Primary Key
 
-![writers_books](documentation/writers_books.png)
+```mermaid
+erDiagram
+    writers {
+        bigint id PK
+        varchar name
+    }
+    books {
+        bigint id PK
+        varchar name
+    }
+    books_writers {
+        bigint book_id PK, FK
+        bigint writer_id PK, FK
+    }
+    books ||--o{ books_writers : "has"
+    writers ||--o{ books_writers : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-b38209e5c9b4)
 
 ### Many-to-Many with Simple Primary Key and Extra Column
 
-![reviewers_articles](documentation/reviewers_comments_articles.png)
+```mermaid
+erDiagram
+    reviewers {
+        bigint id PK
+        varchar name
+    }
+    articles {
+        bigint id PK
+        varchar title
+    }
+    comments {
+        bigint id PK
+        bigint reviewer_id FK
+        bigint article_id FK
+        varchar text
+    }
+    reviewers ||--o{ comments : "has"
+    articles ||--o{ comments : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Simple Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-simple-primary-key-and-extra-column-817e8bdda465)
 
 ### Many-to-Many with Composite Primary Key and Extra Column
 
-![students_courses](documentation/students_courses.png)
+```mermaid
+erDiagram
+    courses {
+        bigint id PK
+        varchar name
+    }
+    students {
+        bigint id PK
+        varchar name
+    }
+    courses_students {
+        bigint course_id PK, FK
+        bigint student_id PK, FK
+        timestamp registration_date
+        smallint grade
+    }
+    courses ||--o{ courses_students : "has"
+    students ||--o{ courses_students : "has"
+```
 
 \[**Medium**\] [**Understanding Relationships in JPA: Many-to-Many with Composite Primary Key and Extra Column**](https://medium.com/@ivangfr/understanding-relationships-in-jpa-many-to-many-with-composite-primary-key-and-extra-column-a939b107c7cd)
 
