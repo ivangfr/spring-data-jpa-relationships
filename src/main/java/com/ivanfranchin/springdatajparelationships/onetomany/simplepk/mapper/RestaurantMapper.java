@@ -10,19 +10,18 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
-        componentModel = "spring",
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
-)
+    componentModel = "spring",
+    nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface RestaurantMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "dishes", ignore = true)
-    Restaurant toRestaurant(CreateRestaurantRequest createRestaurantRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "dishes", ignore = true)
+  Restaurant toRestaurant(CreateRestaurantRequest createRestaurantRequest);
 
-    RestaurantResponse toRestaurantResponse(Restaurant restaurant);
+  RestaurantResponse toRestaurantResponse(Restaurant restaurant);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "dishes", ignore = true)
-    void updateRestaurantFromRequest(UpdateRestaurantRequest updateRestaurantRequest,
-                                     @MappingTarget Restaurant restaurant);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "dishes", ignore = true)
+  void updateRestaurantFromRequest(
+      UpdateRestaurantRequest updateRestaurantRequest, @MappingTarget Restaurant restaurant);
 }

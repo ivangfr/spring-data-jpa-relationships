@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class WriterServiceImpl implements WriterService {
 
-    private final WriterRepository writerRepository;
+  private final WriterRepository writerRepository;
 
-    @Override
-    public Writer validateAndGetWriter(Long id) {
-        return writerRepository.findById(id).orElseThrow(() -> new WriterNotFoundException(id));
-    }
+  @Override
+  public Writer validateAndGetWriter(Long id) {
+    return writerRepository.findById(id).orElseThrow(() -> new WriterNotFoundException(id));
+  }
 
-    @Override
-    public Writer saveWriter(Writer writer) {
-        return writerRepository.save(writer);
-    }
+  @Override
+  public Writer saveWriter(Writer writer) {
+    return writerRepository.save(writer);
+  }
 
-    @Override
-    public void deleteWriter(Writer writer) {
-        writerRepository.delete(writer);
-    }
+  @Override
+  public void deleteWriter(Writer writer) {
+    writerRepository.delete(writer);
+  }
 }

@@ -18,13 +18,12 @@ import lombok.ToString;
 @Table(name = "person_details")
 public class PersonDetail {
 
-    @Id
-    private Long id;
+  @Id private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private Person person;
+  @OneToOne(fetch = FetchType.LAZY)
+  @MapsId
+  private Person person;
 
-    @Column(nullable = false)
-    private String description;
+  @Column(nullable = false)
+  private String description;
 }

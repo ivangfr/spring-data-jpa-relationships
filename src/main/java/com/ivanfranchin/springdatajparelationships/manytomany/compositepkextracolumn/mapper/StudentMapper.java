@@ -10,18 +10,18 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
-        componentModel = "spring",
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
-)
+    componentModel = "spring",
+    nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface StudentMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "courses", ignore = true)
-    Student toStudent(CreateStudentRequest createStudentRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "courses", ignore = true)
+  Student toStudent(CreateStudentRequest createStudentRequest);
 
-    StudentResponse toStudentResponse(Student student);
+  StudentResponse toStudentResponse(Student student);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "courses", ignore = true)
-    void updateStudentFromRequest(UpdateStudentRequest updateStudentRequest, @MappingTarget Student student);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "courses", ignore = true)
+  void updateStudentFromRequest(
+      UpdateStudentRequest updateStudentRequest, @MappingTarget Student student);
 }

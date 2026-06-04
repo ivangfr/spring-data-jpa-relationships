@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.compositepkextraco
 
 public interface CourseService {
 
-    Course validateAndGetCourse(Long id);
+  Course validateAndGetCourse(Long id);
 
-    Course saveCourse(Course course);
+  Course saveCourse(Course course);
 
-    void deleteCourse(Course course);
+  void deleteCourse(Course course);
 }

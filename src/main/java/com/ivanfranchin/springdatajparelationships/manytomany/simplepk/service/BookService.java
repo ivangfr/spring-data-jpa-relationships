@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.simplepk.model.Boo
 
 public interface BookService {
 
-    Book validateAndGetBook(Long id);
+  Book validateAndGetBook(Long id);
 
-    Book saveBook(Book book);
+  Book saveBook(Book book);
 
-    void deleteBook(Book book);
+  void deleteBook(Book book);
 }

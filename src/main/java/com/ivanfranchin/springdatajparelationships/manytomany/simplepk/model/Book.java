@@ -10,12 +10,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Data
 @ToString(exclude = "writers")
@@ -24,27 +23,27 @@ import java.util.Set;
 @Table(name = "books")
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "books_writers",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "writer_id")
-    )
-    private Set<Writer> writers = new LinkedHashSet<>();
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinTable(
+      name = "books_writers",
+      joinColumns = @JoinColumn(name = "book_id"),
+      inverseJoinColumns = @JoinColumn(name = "writer_id"))
+  private Set<Writer> writers = new LinkedHashSet<>();
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    public void addWriter(Writer writer) {
-        this.writers.add(writer);
-        writer.getBooks().add(this);
-    }
+  public void addWriter(Writer writer) {
+    this.writers.add(writer);
+    writer.getBooks().add(this);
+  }
 
-    public void removeWriter(Writer writer) {
-        this.writers.remove(writer);
-        writer.getBooks().remove(this);
-    }
+  public void removeWriter(Writer writer) {
+    this.writers.remove(writer);
+    writer.getBooks().remove(this);
+  }
 }

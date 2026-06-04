@@ -7,11 +7,10 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.Instant;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.time.Instant;
 
 @Data
 @ToString(exclude = {"course", "student"})
@@ -21,18 +20,18 @@ import java.time.Instant;
 @IdClass(CourseStudentPk.class)
 public class CourseStudent {
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+  @Id
+  @ManyToOne
+  @JoinColumn(name = "course_id")
+  private Course course;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+  @Id
+  @ManyToOne
+  @JoinColumn(name = "student_id")
+  private Student student;
 
-    @Column(nullable = false)
-    private Instant registrationDate = Instant.now();
+  @Column(nullable = false)
+  private Instant registrationDate = Instant.now();
 
-    private Short grade;
+  private Short grade;
 }

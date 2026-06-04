@@ -27,64 +27,67 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/teams")
 public class TeamDetailController {
 
-    private final TeamService teamService;
-    private final TeamMapper teamMapper;
+  private final TeamService teamService;
+  private final TeamMapper teamMapper;
 
-    @GetMapping("/{teamId}")
-    public TeamResponse getTeam(@PathVariable Long teamId) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        return teamMapper.toTeamResponse(team);
-    }
+  @GetMapping("/{teamId}")
+  public TeamResponse getTeam(@PathVariable Long teamId) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    return teamMapper.toTeamResponse(team);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public TeamResponse createTeam(@Valid @RequestBody CreateTeamRequest createTeamRequest) {
-        Team team = teamMapper.toTeam(createTeamRequest);
-        team = teamService.saveTeam(team);
-        return teamMapper.toTeamResponse(team);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping
+  public TeamResponse createTeam(@Valid @RequestBody CreateTeamRequest createTeamRequest) {
+    Team team = teamMapper.toTeam(createTeamRequest);
+    team = teamService.saveTeam(team);
+    return teamMapper.toTeamResponse(team);
+  }
 
-    @PutMapping("/{teamId}")
-    public TeamResponse updateTeam(@PathVariable Long teamId, @Valid @RequestBody UpdateTeamRequest updateTeamRequest) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        teamMapper.updateTeamFromRequest(updateTeamRequest, team);
-        teamService.saveTeam(team);
-        return teamMapper.toTeamResponse(team);
-    }
+  @PutMapping("/{teamId}")
+  public TeamResponse updateTeam(
+      @PathVariable Long teamId, @Valid @RequestBody UpdateTeamRequest updateTeamRequest) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    teamMapper.updateTeamFromRequest(updateTeamRequest, team);
+    teamService.saveTeam(team);
+    return teamMapper.toTeamResponse(team);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{teamId}")
-    public void deleteTeam(@PathVariable Long teamId) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        teamService.deleteTeam(team);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{teamId}")
+  public void deleteTeam(@PathVariable Long teamId) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    teamService.deleteTeam(team);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{teamId}/team-details")
-    public TeamResponse addTeamDetail(@PathVariable Long teamId,
-                                      @Valid @RequestBody CreateTeamDetailRequest createTeamDetailRequest) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        TeamDetail teamDetail = teamMapper.toTeamDetail(createTeamDetailRequest);
-        team.addTeamDetail(teamDetail);
-        team = teamService.saveTeam(team);
-        return teamMapper.toTeamResponse(team);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/{teamId}/team-details")
+  public TeamResponse addTeamDetail(
+      @PathVariable Long teamId,
+      @Valid @RequestBody CreateTeamDetailRequest createTeamDetailRequest) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    TeamDetail teamDetail = teamMapper.toTeamDetail(createTeamDetailRequest);
+    team.addTeamDetail(teamDetail);
+    team = teamService.saveTeam(team);
+    return teamMapper.toTeamResponse(team);
+  }
 
-    @PutMapping("/{teamId}/team-details")
-    public TeamResponse updateTeamDetail(@PathVariable Long teamId,
-                                         @Valid @RequestBody UpdateTeamDetailRequest updateTeamDetailRequest) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        TeamDetail teamDetail = team.getTeamDetail();
-        teamMapper.updateTeamDetailFromRequest(updateTeamDetailRequest, teamDetail);
-        team = teamService.saveTeam(team);
-        return teamMapper.toTeamResponse(team);
-    }
+  @PutMapping("/{teamId}/team-details")
+  public TeamResponse updateTeamDetail(
+      @PathVariable Long teamId,
+      @Valid @RequestBody UpdateTeamDetailRequest updateTeamDetailRequest) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    TeamDetail teamDetail = team.getTeamDetail();
+    teamMapper.updateTeamDetailFromRequest(updateTeamDetailRequest, teamDetail);
+    team = teamService.saveTeam(team);
+    return teamMapper.toTeamResponse(team);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{teamId}/team-details")
-    public void deleteTeamDetail(@PathVariable Long teamId) {
-        Team team = teamService.validateAndGetTeam(teamId);
-        team.removeTeamDetail();
-        teamService.saveTeam(team);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{teamId}/team-details")
+  public void deleteTeamDetail(@PathVariable Long teamId) {
+    Team team = teamService.validateAndGetTeam(teamId);
+    team.removeTeamDetail();
+    teamService.saveTeam(team);
+  }
 }

@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-    private final RestaurantRepository restaurantRepository;
+  private final RestaurantRepository restaurantRepository;
 
-    @Override
-    public Restaurant validateAndGetRestaurant(Long id) {
-        return restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException(id));
-    }
+  @Override
+  public Restaurant validateAndGetRestaurant(Long id) {
+    return restaurantRepository.findById(id).orElseThrow(() -> new RestaurantNotFoundException(id));
+  }
 
-    @Override
-    public Restaurant saveRestaurant(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant);
-    }
+  @Override
+  public Restaurant saveRestaurant(Restaurant restaurant) {
+    return restaurantRepository.save(restaurant);
+  }
 
-    @Override
-    public void deleteRestaurant(Restaurant restaurant) {
-        restaurantRepository.delete(restaurant);
-    }
+  @Override
+  public void deleteRestaurant(Restaurant restaurant) {
+    restaurantRepository.delete(restaurant);
+  }
 }

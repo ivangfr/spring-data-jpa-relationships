@@ -32,82 +32,85 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ReviewerArticleController {
 
-    private final ArticleService articleService;
-    private final ReviewerService reviewerService;
-    private final CommentService commentService;
-    private final ReviewerMapper reviewerMapper;
-    private final ArticleMapper articleMapper;
-    private final CommentMapper commentMapper;
+  private final ArticleService articleService;
+  private final ReviewerService reviewerService;
+  private final CommentService commentService;
+  private final ReviewerMapper reviewerMapper;
+  private final ArticleMapper articleMapper;
+  private final CommentMapper commentMapper;
 
-    // --------
-    // Reviewer
+  // --------
+  // Reviewer
 
-    @GetMapping("/reviewers/{reviewerId}")
-    public ReviewerResponse getReviewer(@PathVariable Long reviewerId) {
-        Reviewer reviewer = reviewerService.validateAndGetReviewer(reviewerId);
-        return reviewerMapper.toReviewerResponse(reviewer);
-    }
+  @GetMapping("/reviewers/{reviewerId}")
+  public ReviewerResponse getReviewer(@PathVariable Long reviewerId) {
+    Reviewer reviewer = reviewerService.validateAndGetReviewer(reviewerId);
+    return reviewerMapper.toReviewerResponse(reviewer);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/reviewers")
-    public ReviewerResponse createReviewer(@Valid @RequestBody CreateReviewerRequest createReviewerRequest) {
-        Reviewer reviewer = reviewerMapper.toReviewer(createReviewerRequest);
-        reviewer = reviewerService.saveReviewer(reviewer);
-        return reviewerMapper.toReviewerResponse(reviewer);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/reviewers")
+  public ReviewerResponse createReviewer(
+      @Valid @RequestBody CreateReviewerRequest createReviewerRequest) {
+    Reviewer reviewer = reviewerMapper.toReviewer(createReviewerRequest);
+    reviewer = reviewerService.saveReviewer(reviewer);
+    return reviewerMapper.toReviewerResponse(reviewer);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/reviewers/{reviewerId}")
-    public void deleteReviewer(@PathVariable Long reviewerId) {
-        Reviewer reviewer = reviewerService.validateAndGetReviewer(reviewerId);
-        reviewerService.deleteReviewer(reviewer);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/reviewers/{reviewerId}")
+  public void deleteReviewer(@PathVariable Long reviewerId) {
+    Reviewer reviewer = reviewerService.validateAndGetReviewer(reviewerId);
+    reviewerService.deleteReviewer(reviewer);
+  }
 
-    // -------
-    // Article
+  // -------
+  // Article
 
-    @GetMapping("/articles/{articleId}")
-    public ArticleResponse getArticle(@PathVariable Long articleId) {
-        Article article = articleService.validateAndGetArticle(articleId);
-        return articleMapper.toArticleResponse(article);
-    }
+  @GetMapping("/articles/{articleId}")
+  public ArticleResponse getArticle(@PathVariable Long articleId) {
+    Article article = articleService.validateAndGetArticle(articleId);
+    return articleMapper.toArticleResponse(article);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/articles")
-    public ArticleResponse createArticle(@Valid @RequestBody CreateArticleRequest createArticleRequest) {
-        Article article = articleMapper.toArticle(createArticleRequest);
-        article = articleService.createArticle(article);
-        return articleMapper.toArticleResponse(article);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/articles")
+  public ArticleResponse createArticle(
+      @Valid @RequestBody CreateArticleRequest createArticleRequest) {
+    Article article = articleMapper.toArticle(createArticleRequest);
+    article = articleService.createArticle(article);
+    return articleMapper.toArticleResponse(article);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/articles/{articleId}")
-    public void deleteArticle(@PathVariable Long articleId) {
-        Article article = articleService.validateAndGetArticle(articleId);
-        articleService.deleteArticle(article);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/articles/{articleId}")
+  public void deleteArticle(@PathVariable Long articleId) {
+    Article article = articleService.validateAndGetArticle(articleId);
+    articleService.deleteArticle(article);
+  }
 
-    // --------
-    // Comments
+  // --------
+  // Comments
 
-    @GetMapping("/comments/{commentId}")
-    public CommentResponse getComment(@PathVariable Long commentId) {
-        Comment comment = commentService.validateAndGetComment(commentId);
-        return commentMapper.toCommentResponse(comment);
-    }
+  @GetMapping("/comments/{commentId}")
+  public CommentResponse getComment(@PathVariable Long commentId) {
+    Comment comment = commentService.validateAndGetComment(commentId);
+    return commentMapper.toCommentResponse(comment);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/comments")
-    public CommentResponse createComment(@Valid @RequestBody CreateCommentRequest createCommentRequest) {
-        Comment comment = commentMapper.toComment(createCommentRequest);
-        comment = commentService.saveComment(comment);
-        return commentMapper.toCommentResponse(comment);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/comments")
+  public CommentResponse createComment(
+      @Valid @RequestBody CreateCommentRequest createCommentRequest) {
+    Comment comment = commentMapper.toComment(createCommentRequest);
+    comment = commentService.saveComment(comment);
+    return commentMapper.toCommentResponse(comment);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/comments/{commentId}")
-    public void deleteComment(@PathVariable Long commentId) {
-        Comment comment = commentService.validateAndGetComment(commentId);
-        commentService.deleteComment(comment);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/comments/{commentId}")
+  public void deleteComment(@PathVariable Long commentId) {
+    Comment comment = commentService.validateAndGetComment(commentId);
+    commentService.deleteComment(comment);
+  }
 }

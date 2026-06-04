@@ -35,106 +35,112 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class StudentCourseController {
 
-    private final StudentService studentService;
-    private final CourseService courseService;
-    private final CourseStudentService courseStudentService;
-    private final StudentMapper studentMapper;
-    private final CourseMapper courseMapper;
-    private final CourseStudentMapper courseStudentMapper;
+  private final StudentService studentService;
+  private final CourseService courseService;
+  private final CourseStudentService courseStudentService;
+  private final StudentMapper studentMapper;
+  private final CourseMapper courseMapper;
+  private final CourseStudentMapper courseStudentMapper;
 
-    // -------
-    // Student
+  // -------
+  // Student
 
-    @GetMapping("/students/{studentId}")
-    public StudentResponse getStudent(@PathVariable Long studentId) {
-        Student student = studentService.validateAndGetStudent(studentId);
-        return studentMapper.toStudentResponse(student);
-    }
+  @GetMapping("/students/{studentId}")
+  public StudentResponse getStudent(@PathVariable Long studentId) {
+    Student student = studentService.validateAndGetStudent(studentId);
+    return studentMapper.toStudentResponse(student);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/students")
-    public StudentResponse createStudent(@Valid @RequestBody CreateStudentRequest createStudentRequest) {
-        Student student = studentMapper.toStudent(createStudentRequest);
-        student = studentService.saveStudent(student);
-        return studentMapper.toStudentResponse(student);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/students")
+  public StudentResponse createStudent(
+      @Valid @RequestBody CreateStudentRequest createStudentRequest) {
+    Student student = studentMapper.toStudent(createStudentRequest);
+    student = studentService.saveStudent(student);
+    return studentMapper.toStudentResponse(student);
+  }
 
-    @PutMapping("/students/{studentId}")
-    public StudentResponse updateStudent(@PathVariable Long studentId,
-                                         @Valid @RequestBody UpdateStudentRequest updateStudentRequest) {
-        Student student = studentService.validateAndGetStudent(studentId);
-        studentMapper.updateStudentFromRequest(updateStudentRequest, student);
-        student = studentService.saveStudent(student);
-        return studentMapper.toStudentResponse(student);
-    }
+  @PutMapping("/students/{studentId}")
+  public StudentResponse updateStudent(
+      @PathVariable Long studentId, @Valid @RequestBody UpdateStudentRequest updateStudentRequest) {
+    Student student = studentService.validateAndGetStudent(studentId);
+    studentMapper.updateStudentFromRequest(updateStudentRequest, student);
+    student = studentService.saveStudent(student);
+    return studentMapper.toStudentResponse(student);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/students/{studentId}")
-    public void deleteStudent(@PathVariable Long studentId) {
-        Student student = studentService.validateAndGetStudent(studentId);
-        studentService.deleteStudent(student);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/students/{studentId}")
+  public void deleteStudent(@PathVariable Long studentId) {
+    Student student = studentService.validateAndGetStudent(studentId);
+    studentService.deleteStudent(student);
+  }
 
-    // ------
-    // Course
+  // ------
+  // Course
 
-    @GetMapping("/courses/{courseId}")
-    public CourseResponse getCourse(@PathVariable Long courseId) {
-        Course course = courseService.validateAndGetCourse(courseId);
-        return courseMapper.toCourseResponse(course);
-    }
+  @GetMapping("/courses/{courseId}")
+  public CourseResponse getCourse(@PathVariable Long courseId) {
+    Course course = courseService.validateAndGetCourse(courseId);
+    return courseMapper.toCourseResponse(course);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/courses")
-    public CourseResponse createCourse(@Valid @RequestBody CreateCourseRequest createCourseRequest) {
-        Course course = courseMapper.toCourse(createCourseRequest);
-        course = courseService.saveCourse(course);
-        return courseMapper.toCourseResponse(course);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/courses")
+  public CourseResponse createCourse(@Valid @RequestBody CreateCourseRequest createCourseRequest) {
+    Course course = courseMapper.toCourse(createCourseRequest);
+    course = courseService.saveCourse(course);
+    return courseMapper.toCourseResponse(course);
+  }
 
-    @PutMapping("/courses/{courseId}")
-    public CourseResponse updateCourse(@PathVariable Long courseId,
-                                       @Valid @RequestBody UpdateCourseRequest updateCourseRequest) {
-        Course course = courseService.validateAndGetCourse(courseId);
-        courseMapper.updateCourseFromRequest(updateCourseRequest, course);
-        course = courseService.saveCourse(course);
-        return courseMapper.toCourseResponse(course);
-    }
+  @PutMapping("/courses/{courseId}")
+  public CourseResponse updateCourse(
+      @PathVariable Long courseId, @Valid @RequestBody UpdateCourseRequest updateCourseRequest) {
+    Course course = courseService.validateAndGetCourse(courseId);
+    courseMapper.updateCourseFromRequest(updateCourseRequest, course);
+    course = courseService.saveCourse(course);
+    return courseMapper.toCourseResponse(course);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/courses/{courseId}")
-    public void deleteCourse(@PathVariable Long courseId) {
-        Course course = courseService.validateAndGetCourse(courseId);
-        courseService.deleteCourse(course);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/courses/{courseId}")
+  public void deleteCourse(@PathVariable Long courseId) {
+    Course course = courseService.validateAndGetCourse(courseId);
+    courseService.deleteCourse(course);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/courses/{courseId}/students/{studentId}")
-    public CourseStudentResponse enrollStudentInCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
-        Course course = courseService.validateAndGetCourse(courseId);
-        Student student = studentService.validateAndGetStudent(studentId);
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/courses/{courseId}/students/{studentId}")
+  public CourseStudentResponse enrollStudentInCourse(
+      @PathVariable Long courseId, @PathVariable Long studentId) {
+    Course course = courseService.validateAndGetCourse(courseId);
+    Student student = studentService.validateAndGetStudent(studentId);
 
-        CourseStudent courseStudent = new CourseStudent();
-        courseStudent.setStudent(student);
-        courseStudent.setCourse(course);
-        courseStudent = courseStudentService.saveCourseStudent(courseStudent);
+    CourseStudent courseStudent = new CourseStudent();
+    courseStudent.setStudent(student);
+    courseStudent.setCourse(course);
+    courseStudent = courseStudentService.saveCourseStudent(courseStudent);
 
-        return courseStudentMapper.toCourseStudentResponse(courseStudent);
-    }
+    return courseStudentMapper.toCourseStudentResponse(courseStudent);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/courses/{courseId}/students/{studentId}")
-    public void unregisterStudentOfCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
-        CourseStudent courseStudent = courseStudentService.validateAndGetCourseStudent(courseId, studentId);
-        courseStudentService.deleteCourseStudent(courseStudent);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/courses/{courseId}/students/{studentId}")
+  public void unregisterStudentOfCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
+    CourseStudent courseStudent =
+        courseStudentService.validateAndGetCourseStudent(courseId, studentId);
+    courseStudentService.deleteCourseStudent(courseStudent);
+  }
 
-    @PutMapping("/courses/{courseId}/students/{studentId}")
-    public CourseStudentResponse updateStudentDataInCourse(@PathVariable Long courseId, @PathVariable Long studentId,
-                                                           @Valid @RequestBody UpdateCourseStudentRequest updateCourseStudentRequest) {
-        CourseStudent courseStudent = courseStudentService.validateAndGetCourseStudent(courseId, studentId);
-        courseStudentMapper.updateCourseStudentFromRequest(updateCourseStudentRequest, courseStudent);
-        courseStudentService.saveCourseStudent(courseStudent);
-        return courseStudentMapper.toCourseStudentResponse(courseStudent);
-    }
+  @PutMapping("/courses/{courseId}/students/{studentId}")
+  public CourseStudentResponse updateStudentDataInCourse(
+      @PathVariable Long courseId,
+      @PathVariable Long studentId,
+      @Valid @RequestBody UpdateCourseStudentRequest updateCourseStudentRequest) {
+    CourseStudent courseStudent =
+        courseStudentService.validateAndGetCourseStudent(courseId, studentId);
+    courseStudentMapper.updateCourseStudentFromRequest(updateCourseStudentRequest, courseStudent);
+    courseStudentService.saveCourseStudent(courseStudent);
+    return courseStudentMapper.toCourseStudentResponse(courseStudent);
+  }
 }

@@ -5,5 +5,5 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
-public record UpdateCourseStudentRequest(@Schema(example = "9") @NotNull @Min(value = 0) @Max(value = 10) Short grade) {
-}
+public record UpdateCourseStudentRequest(
+    @Schema(example = "9") @NotNull @Min(value = 0) @Max(value = 10) Short grade) {}

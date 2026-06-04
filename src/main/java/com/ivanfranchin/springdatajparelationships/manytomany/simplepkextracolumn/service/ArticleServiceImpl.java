@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
-    private final ArticleRepository articleRepository;
+  private final ArticleRepository articleRepository;
 
-    @Override
-    public Article validateAndGetArticle(Long id) {
-        return articleRepository.findById(id).orElseThrow(() -> new ArticleNotFoundException(id));
-    }
+  @Override
+  public Article validateAndGetArticle(Long id) {
+    return articleRepository.findById(id).orElseThrow(() -> new ArticleNotFoundException(id));
+  }
 
-    @Override
-    public Article createArticle(Article article) {
-        return articleRepository.save(article);
-    }
+  @Override
+  public Article createArticle(Article article) {
+    return articleRepository.save(article);
+  }
 
-    @Override
-    public void deleteArticle(Article article) {
-        articleRepository.delete(article);
-    }
+  @Override
+  public void deleteArticle(Article article) {
+    articleRepository.delete(article);
+  }
 }

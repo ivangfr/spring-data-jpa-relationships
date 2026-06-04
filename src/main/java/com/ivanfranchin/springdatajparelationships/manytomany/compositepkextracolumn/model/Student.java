@@ -8,12 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Data
 @ToString(exclude = "courses")
@@ -22,13 +21,13 @@ import java.util.Set;
 @Table(name = "students")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<CourseStudent> courses = new LinkedHashSet<>();
+  @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+  private Set<CourseStudent> courses = new LinkedHashSet<>();
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 }

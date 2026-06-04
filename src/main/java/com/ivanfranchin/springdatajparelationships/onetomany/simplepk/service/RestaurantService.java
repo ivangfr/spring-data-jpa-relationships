@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.onetomany.simplepk.model.Rest
 
 public interface RestaurantService {
 
-    Restaurant validateAndGetRestaurant(Long id);
+  Restaurant validateAndGetRestaurant(Long id);
 
-    Restaurant saveRestaurant(Restaurant restaurant);
+  Restaurant saveRestaurant(Restaurant restaurant);
 
-    void deleteRestaurant(Restaurant restaurant);
+  void deleteRestaurant(Restaurant restaurant);
 }

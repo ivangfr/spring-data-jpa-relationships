@@ -20,25 +20,25 @@ import lombok.ToString;
 @Table(name = "teams")
 public class Team {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @OneToOne(mappedBy = "team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private TeamDetail teamDetail;
+  @OneToOne(mappedBy = "team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private TeamDetail teamDetail;
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    public void addTeamDetail(TeamDetail teamDetail) {
-        this.teamDetail = teamDetail;
-        teamDetail.setTeam(this);
+  public void addTeamDetail(TeamDetail teamDetail) {
+    this.teamDetail = teamDetail;
+    teamDetail.setTeam(this);
+  }
+
+  public void removeTeamDetail() {
+    if (this.teamDetail != null) {
+      this.teamDetail.setTeam(null);
+      this.teamDetail = null;
     }
-
-    public void removeTeamDetail() {
-        if (this.teamDetail != null) {
-            this.teamDetail.setTeam(null);
-            this.teamDetail = null;
-        }
-    }
+  }
 }

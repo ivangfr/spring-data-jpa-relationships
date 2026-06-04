@@ -4,6 +4,5 @@ import java.util.List;
 
 public record BookResponse(Long id, String name, List<WriterRef> writers) {
 
-    public record WriterRef(Long id, String name) {
-    }
+  public record WriterRef(Long id, String name) {}
 }

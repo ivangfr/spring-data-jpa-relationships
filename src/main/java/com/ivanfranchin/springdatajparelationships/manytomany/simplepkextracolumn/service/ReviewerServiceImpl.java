@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewerServiceImpl implements ReviewerService {
 
-    private final ReviewerRepository reviewerRepository;
+  private final ReviewerRepository reviewerRepository;
 
-    @Override
-    public Reviewer validateAndGetReviewer(Long id) {
-        return reviewerRepository.findById(id).orElseThrow(() -> new ReviewerNotFoundException(id));
-    }
+  @Override
+  public Reviewer validateAndGetReviewer(Long id) {
+    return reviewerRepository.findById(id).orElseThrow(() -> new ReviewerNotFoundException(id));
+  }
 
-    @Override
-    public Reviewer saveReviewer(Reviewer reviewer) {
-        return reviewerRepository.save(reviewer);
-    }
+  @Override
+  public Reviewer saveReviewer(Reviewer reviewer) {
+    return reviewerRepository.save(reviewer);
+  }
 
-    @Override
-    public void deleteReviewer(Reviewer reviewer) {
-        reviewerRepository.delete(reviewer);
-    }
+  @Override
+  public void deleteReviewer(Reviewer reviewer) {
+    reviewerRepository.delete(reviewer);
+  }
 }

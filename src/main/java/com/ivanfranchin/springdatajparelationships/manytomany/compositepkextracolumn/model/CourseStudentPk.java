@@ -2,5 +2,4 @@ package com.ivanfranchin.springdatajparelationships.manytomany.compositepkextrac
 
 import java.io.Serializable;
 
-public record CourseStudentPk(Long course, Long student) implements Serializable {
-}
+public record CourseStudentPk(Long course, Long student) implements Serializable {}

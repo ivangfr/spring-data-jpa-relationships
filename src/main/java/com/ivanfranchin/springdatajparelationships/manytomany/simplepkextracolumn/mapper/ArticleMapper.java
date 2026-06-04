@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ArticleMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "comments", ignore = true)
-    Article toArticle(CreateArticleRequest createArticleRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "comments", ignore = true)
+  Article toArticle(CreateArticleRequest createArticleRequest);
 
-    ArticleResponse toArticleResponse(Article article);
+  ArticleResponse toArticleResponse(Article article);
 }

@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeamServiceImpl implements TeamService {
 
-    private final TeamRepository teamRepository;
+  private final TeamRepository teamRepository;
 
-    @Override
-    public Team validateAndGetTeam(Long id) {
-        return teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException(id));
-    }
+  @Override
+  public Team validateAndGetTeam(Long id) {
+    return teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException(id));
+  }
 
-    @Override
-    public Team saveTeam(Team team) {
-        return teamRepository.save(team);
-    }
+  @Override
+  public Team saveTeam(Team team) {
+    return teamRepository.save(team);
+  }
 
-    @Override
-    public void deleteTeam(Team team) {
-        teamRepository.delete(team);
-    }
+  @Override
+  public void deleteTeam(Team team) {
+    teamRepository.delete(team);
+  }
 }

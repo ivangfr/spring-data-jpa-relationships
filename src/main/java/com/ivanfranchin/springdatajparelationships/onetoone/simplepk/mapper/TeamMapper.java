@@ -13,27 +13,26 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
-        componentModel = "spring",
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
-)
+    componentModel = "spring",
+    nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface TeamMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "teamDetail", ignore = true)
-    Team toTeam(CreateTeamRequest createTeamRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "teamDetail", ignore = true)
+  Team toTeam(CreateTeamRequest createTeamRequest);
 
-    TeamResponse toTeamResponse(Team team);
+  TeamResponse toTeamResponse(Team team);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "teamDetail", ignore = true)
-    void updateTeamFromRequest(UpdateTeamRequest updateTeamRequest, @MappingTarget Team team);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "teamDetail", ignore = true)
+  void updateTeamFromRequest(UpdateTeamRequest updateTeamRequest, @MappingTarget Team team);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "team", ignore = true)
-    TeamDetail toTeamDetail(CreateTeamDetailRequest createTeamDetailRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "team", ignore = true)
+  TeamDetail toTeamDetail(CreateTeamDetailRequest createTeamDetailRequest);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "team", ignore = true)
-    void updateTeamDetailFromRequest(UpdateTeamDetailRequest updateTeamDetailRequest,
-                                     @MappingTarget TeamDetail teamDetail);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "team", ignore = true)
+  void updateTeamDetailFromRequest(
+      UpdateTeamDetailRequest updateTeamDetailRequest, @MappingTarget TeamDetail teamDetail);
 }

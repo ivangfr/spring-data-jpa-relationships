@@ -19,18 +19,18 @@ import lombok.ToString;
 @Table(name = "comments")
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "reviewer_id")
-    private Reviewer reviewer;
+  @ManyToOne
+  @JoinColumn(name = "reviewer_id")
+  private Reviewer reviewer;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
+  @ManyToOne
+  @JoinColumn(name = "article_id")
+  private Article article;
 
-    @Column(nullable = false)
-    private String text;
+  @Column(nullable = false)
+  private String text;
 }

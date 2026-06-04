@@ -27,66 +27,68 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/persons")
 public class PersonDetailController {
 
-    private final PersonService personService;
-    private final PersonMapper personMapper;
+  private final PersonService personService;
+  private final PersonMapper personMapper;
 
-    @GetMapping("/{personId}")
-    public PersonResponse getPerson(@PathVariable Long personId) {
-        Person person = personService.validateAndGetPerson(personId);
-        return personMapper.toPersonResponse(person);
-    }
+  @GetMapping("/{personId}")
+  public PersonResponse getPerson(@PathVariable Long personId) {
+    Person person = personService.validateAndGetPerson(personId);
+    return personMapper.toPersonResponse(person);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public PersonResponse createPerson(@Valid @RequestBody CreatePersonRequest createPersonRequest) {
-        Person person = personMapper.toPerson(createPersonRequest);
-        person = personService.savePerson(person);
-        return personMapper.toPersonResponse(person);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping
+  public PersonResponse createPerson(@Valid @RequestBody CreatePersonRequest createPersonRequest) {
+    Person person = personMapper.toPerson(createPersonRequest);
+    person = personService.savePerson(person);
+    return personMapper.toPersonResponse(person);
+  }
 
-    @PutMapping("/{personId}")
-    public PersonResponse updatePerson(@PathVariable Long personId,
-                                       @Valid @RequestBody UpdatePersonRequest updatePersonRequest) {
-        Person person = personService.validateAndGetPerson(personId);
-        personMapper.updatePersonFromRequest(updatePersonRequest, person);
-        person = personService.savePerson(person);
-        return personMapper.toPersonResponse(person);
-    }
+  @PutMapping("/{personId}")
+  public PersonResponse updatePerson(
+      @PathVariable Long personId, @Valid @RequestBody UpdatePersonRequest updatePersonRequest) {
+    Person person = personService.validateAndGetPerson(personId);
+    personMapper.updatePersonFromRequest(updatePersonRequest, person);
+    person = personService.savePerson(person);
+    return personMapper.toPersonResponse(person);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{personId}")
-    public void deletePerson(@PathVariable Long personId) {
-        Person person = personService.validateAndGetPerson(personId);
-        personService.deletePerson(person);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{personId}")
+  public void deletePerson(@PathVariable Long personId) {
+    Person person = personService.validateAndGetPerson(personId);
+    personService.deletePerson(person);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{personId}/person-details")
-    public PersonResponse addPersonDetail(@PathVariable Long personId,
-                                          @Valid @RequestBody CreatePersonDetailRequest createPersonDetailRequest) {
-        Person person = personService.validateAndGetPerson(personId);
-        PersonDetail personDetail = personMapper.toPersonDetail(createPersonDetailRequest);
-        person.addPersonDetail(personDetail);
-        person = personService.savePerson(person);
-        return personMapper.toPersonResponse(person);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/{personId}/person-details")
+  public PersonResponse addPersonDetail(
+      @PathVariable Long personId,
+      @Valid @RequestBody CreatePersonDetailRequest createPersonDetailRequest) {
+    Person person = personService.validateAndGetPerson(personId);
+    PersonDetail personDetail = personMapper.toPersonDetail(createPersonDetailRequest);
+    person.addPersonDetail(personDetail);
+    person = personService.savePerson(person);
+    return personMapper.toPersonResponse(person);
+  }
 
-    @PutMapping("/{personId}/person-details")
-    public PersonResponse updatePersonDetail(@PathVariable Long personId,
-                                             @Valid @RequestBody UpdatePersonDetailRequest updatePersonDetailRequest) {
-        Person person = personService.validateAndGetPerson(personId);
-        PersonDetail personDetail = person.getPersonDetail();
-        personMapper.updatePersonDetailFromRequest(updatePersonDetailRequest, personDetail);
-        person = personService.savePerson(person);
-        return personMapper.toPersonResponse(person);
-    }
+  @PutMapping("/{personId}/person-details")
+  public PersonResponse updatePersonDetail(
+      @PathVariable Long personId,
+      @Valid @RequestBody UpdatePersonDetailRequest updatePersonDetailRequest) {
+    Person person = personService.validateAndGetPerson(personId);
+    PersonDetail personDetail = person.getPersonDetail();
+    personMapper.updatePersonDetailFromRequest(updatePersonDetailRequest, personDetail);
+    person = personService.savePerson(person);
+    return personMapper.toPersonResponse(person);
+  }
 
-    // Hibernate doesn't allow to delete the person-details
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{personId}/person-details")
-    public void deletePersonDetail(@PathVariable Long personId) {
-        Person person = personService.validateAndGetPerson(personId);
-        person.removePersonDetail();
-        personService.savePerson(person);
-    }
+  // Hibernate doesn't allow to delete the person-details
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{personId}/person-details")
+  public void deletePersonDetail(@PathVariable Long personId) {
+    Person person = personService.validateAndGetPerson(personId);
+    person.removePersonDetail();
+    personService.savePerson(person);
+  }
 }

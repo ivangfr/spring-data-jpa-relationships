@@ -3,5 +3,4 @@ package com.ivanfranchin.springdatajparelationships.manytomany.compositepkextrac
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
-public record CreateCourseRequest(@Schema(example = "Java 8") @NotBlank String name) {
-}
+public record CreateCourseRequest(@Schema(example = "Java 8") @NotBlank String name) {}

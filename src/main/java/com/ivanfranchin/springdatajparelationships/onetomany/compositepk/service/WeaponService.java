@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.onetomany.compositepk.model.W
 
 public interface WeaponService {
 
-    Weapon validateAndGetWeapon(Long playerId, Long weaponId);
+  Weapon validateAndGetWeapon(Long playerId, Long weaponId);
 
-    Weapon saveWeapon(Weapon weapon);
+  Weapon saveWeapon(Weapon weapon);
 
-    void deleteWeapon(Weapon weapon);
+  void deleteWeapon(Weapon weapon);
 }

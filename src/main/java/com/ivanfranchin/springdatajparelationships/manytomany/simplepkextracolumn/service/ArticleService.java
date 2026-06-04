@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.simplepkextracolum
 
 public interface ArticleService {
 
-    Article validateAndGetArticle(Long id);
+  Article validateAndGetArticle(Long id);
 
-    Article createArticle(Article article);
+  Article createArticle(Article article);
 
-    void deleteArticle(Article article);
+  void deleteArticle(Article article);
 }

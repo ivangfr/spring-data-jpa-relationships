@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.onetoone.sharedpk.model.Perso
 
 public interface PersonService {
 
-    Person validateAndGetPerson(Long id);
+  Person validateAndGetPerson(Long id);
 
-    Person savePerson(Person person);
+  Person savePerson(Person person);
 
-    void deletePerson(Person person);
+  void deletePerson(Person person);
 }

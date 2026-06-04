@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface WeaponMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "player", ignore = true)
-    Weapon toWeapon(CreateWeaponRequest createWeaponRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "player", ignore = true)
+  Weapon toWeapon(CreateWeaponRequest createWeaponRequest);
 
-    WeaponResponse toWeaponResponse(Weapon weapon);
+  WeaponResponse toWeaponResponse(Weapon weapon);
 }

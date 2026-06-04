@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.simplepkextracolum
 
 public interface ReviewerService {
 
-    Reviewer validateAndGetReviewer(Long id);
+  Reviewer validateAndGetReviewer(Long id);
 
-    Reviewer saveReviewer(Reviewer reviewer);
+  Reviewer saveReviewer(Reviewer reviewer);
 
-    void deleteReviewer(Reviewer reviewer);
+  void deleteReviewer(Reviewer reviewer);
 }

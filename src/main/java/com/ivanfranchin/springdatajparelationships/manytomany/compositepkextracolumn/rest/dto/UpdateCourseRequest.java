@@ -2,5 +2,4 @@ package com.ivanfranchin.springdatajparelationships.manytomany.compositepkextrac
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public record UpdateCourseRequest(@Schema(example = "Java 9") String name) {
-}
+public record UpdateCourseRequest(@Schema(example = "Java 9") String name) {}

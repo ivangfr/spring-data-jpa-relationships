@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.simplepk.model.Wri
 
 public interface WriterService {
 
-    Writer validateAndGetWriter(Long id);
+  Writer validateAndGetWriter(Long id);
 
-    Writer saveWriter(Writer writer);
+  Writer saveWriter(Writer writer);
 
-    void deleteWriter(Writer writer);
+  void deleteWriter(Writer writer);
 }

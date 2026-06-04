@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.onetomany.compositepk.model.P
 
 public interface PlayerService {
 
-    Player validateAndGetPlayer(Long id);
+  Player validateAndGetPlayer(Long id);
 
-    Player savePlayer(Player player);
+  Player savePlayer(Player player);
 
-    void deletePlayer(Player player);
+  void deletePlayer(Player player);
 }

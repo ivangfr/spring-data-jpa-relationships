@@ -10,16 +10,15 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(
-        componentModel = "spring",
-        uses = {ReviewerService.class, ArticleService.class},
-        injectionStrategy = InjectionStrategy.CONSTRUCTOR
-)
+    componentModel = "spring",
+    uses = {ReviewerService.class, ArticleService.class},
+    injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface CommentMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "reviewer", source = "reviewerId")
-    @Mapping(target = "article", source = "articleId")
-    Comment toComment(CreateCommentRequest createCommentRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "reviewer", source = "reviewerId")
+  @Mapping(target = "article", source = "articleId")
+  Comment toComment(CreateCommentRequest createCommentRequest);
 
-    CommentResponse toCommentResponse(Comment comment);
+  CommentResponse toCommentResponse(Comment comment);
 }

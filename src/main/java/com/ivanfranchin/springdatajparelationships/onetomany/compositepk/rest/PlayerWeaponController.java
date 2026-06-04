@@ -27,63 +27,64 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/players")
 public class PlayerWeaponController {
 
-    private final PlayerService playerService;
-    private final WeaponService weaponService;
-    private final PlayerMapper playerMapper;
-    private final WeaponMapper weaponMapper;
+  private final PlayerService playerService;
+  private final WeaponService weaponService;
+  private final PlayerMapper playerMapper;
+  private final WeaponMapper weaponMapper;
 
-    // ------
-    // Player
+  // ------
+  // Player
 
-    @GetMapping("/{playerId}")
-    public PlayerResponse getPlayer(@PathVariable Long playerId) {
-        Player player = playerService.validateAndGetPlayer(playerId);
-        return playerMapper.toPlayerResponse(player);
-    }
+  @GetMapping("/{playerId}")
+  public PlayerResponse getPlayer(@PathVariable Long playerId) {
+    Player player = playerService.validateAndGetPlayer(playerId);
+    return playerMapper.toPlayerResponse(player);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public PlayerResponse createPlayer(@Valid @RequestBody CreatePlayerRequest createPlayerRequest) {
-        Player player = playerMapper.toPlayer(createPlayerRequest);
-        player = playerService.savePlayer(player);
-        return playerMapper.toPlayerResponse(player);
-    }
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping
+  public PlayerResponse createPlayer(@Valid @RequestBody CreatePlayerRequest createPlayerRequest) {
+    Player player = playerMapper.toPlayer(createPlayerRequest);
+    player = playerService.savePlayer(player);
+    return playerMapper.toPlayerResponse(player);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{playerId}")
-    public void deletePlayer(@PathVariable Long playerId) {
-        Player player = playerService.validateAndGetPlayer(playerId);
-        playerService.deletePlayer(player);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{playerId}")
+  public void deletePlayer(@PathVariable Long playerId) {
+    Player player = playerService.validateAndGetPlayer(playerId);
+    playerService.deletePlayer(player);
+  }
 
-    // ------
-    // Weapon
+  // ------
+  // Weapon
 
-    @GetMapping("/{playerId}/weapons/{weaponId}")
-    public WeaponResponse getWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
-        Weapon weapon = weaponService.validateAndGetWeapon(playerId, weaponId);
-        return weaponMapper.toWeaponResponse(weapon);
-    }
+  @GetMapping("/{playerId}/weapons/{weaponId}")
+  public WeaponResponse getWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
+    Weapon weapon = weaponService.validateAndGetWeapon(playerId, weaponId);
+    return weaponMapper.toWeaponResponse(weapon);
+  }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{playerId}/weapons")
-    public WeaponResponse addWeapon(@PathVariable Long playerId, @Valid @RequestBody CreateWeaponRequest createWeaponRequest) {
-        Player player = playerService.validateAndGetPlayer(playerId);
-        Weapon weapon = weaponMapper.toWeapon(createWeaponRequest);
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("/{playerId}/weapons")
+  public WeaponResponse addWeapon(
+      @PathVariable Long playerId, @Valid @RequestBody CreateWeaponRequest createWeaponRequest) {
+    Player player = playerService.validateAndGetPlayer(playerId);
+    Weapon weapon = weaponMapper.toWeapon(createWeaponRequest);
 
-        // to avoid "org.hibernate.HibernateException: No part of a composite identifier may be null"
-        // in spite of the fact that it's set a fixed value here, hibernate will generate a new value
-        weapon.setId(0L);
-        weapon.setPlayer(player);
-        weapon = weaponService.saveWeapon(weapon);
+    // to avoid "org.hibernate.HibernateException: No part of a composite identifier may be null"
+    // in spite of the fact that it's set a fixed value here, hibernate will generate a new value
+    weapon.setId(0L);
+    weapon.setPlayer(player);
+    weapon = weaponService.saveWeapon(weapon);
 
-        return weaponMapper.toWeaponResponse(weapon);
-    }
+    return weaponMapper.toWeaponResponse(weapon);
+  }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{playerId}/weapons/{weaponId}")
-    public void removeWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
-        Weapon weapon = weaponService.validateAndGetWeapon(playerId, weaponId);
-        weaponService.deleteWeapon(weapon);
-    }
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @DeleteMapping("/{playerId}/weapons/{weaponId}")
+  public void removeWeapon(@PathVariable Long playerId, @PathVariable Long weaponId) {
+    Weapon weapon = weaponService.validateAndGetWeapon(playerId, weaponId);
+    weaponService.deleteWeapon(weapon);
+  }
 }

@@ -6,5 +6,4 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WeaponRepository extends CrudRepository<Weapon, WeaponPk> {
-}
+public interface WeaponRepository extends CrudRepository<Weapon, WeaponPk> {}

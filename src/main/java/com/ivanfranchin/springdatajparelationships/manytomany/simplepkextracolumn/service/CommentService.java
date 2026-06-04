@@ -4,9 +4,9 @@ import com.ivanfranchin.springdatajparelationships.manytomany.simplepkextracolum
 
 public interface CommentService {
 
-    Comment validateAndGetComment(Long id);
+  Comment validateAndGetComment(Long id);
 
-    Comment saveComment(Comment comment);
+  Comment saveComment(Comment comment);
 
-    void deleteComment(Comment comment);
+  void deleteComment(Comment comment);
 }

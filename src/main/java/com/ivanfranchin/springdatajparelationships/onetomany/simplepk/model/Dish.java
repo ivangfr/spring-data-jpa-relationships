@@ -20,26 +20,26 @@ import lombok.ToString;
 @Table(name = "dishes")
 public class Dish {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "restaurant_id")
+  private Restaurant restaurant;
 
-    @Column(nullable = false)
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    public void addRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-        restaurant.getDishes().add(this);
+  public void addRestaurant(Restaurant restaurant) {
+    this.restaurant = restaurant;
+    restaurant.getDishes().add(this);
+  }
+
+  public void removeRestaurant() {
+    if (this.restaurant != null) {
+      this.restaurant.getDishes().remove(this);
+      this.restaurant = null;
     }
-
-    public void removeRestaurant() {
-        if (this.restaurant != null) {
-            this.restaurant.getDishes().remove(this);
-            this.restaurant = null;
-        }
-    }
+  }
 }

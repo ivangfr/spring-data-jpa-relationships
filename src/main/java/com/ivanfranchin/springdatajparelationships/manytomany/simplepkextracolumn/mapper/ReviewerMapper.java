@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ReviewerMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "comments", ignore = true)
-    Reviewer toReviewer(CreateReviewerRequest createReviewerRequest);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "comments", ignore = true)
+  Reviewer toReviewer(CreateReviewerRequest createReviewerRequest);
 
-    ReviewerResponse toReviewerResponse(Reviewer reviewer);
+  ReviewerResponse toReviewerResponse(Reviewer reviewer);
 }

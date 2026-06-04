@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class RestaurantNotFoundException extends RuntimeException {
 
-    public RestaurantNotFoundException(Long id) {
-        super(String.format("Restaurant with id '%s' not found", id));
-    }
+  public RestaurantNotFoundException(Long id) {
+    super(String.format("Restaurant with id '%s' not found", id));
+  }
 }

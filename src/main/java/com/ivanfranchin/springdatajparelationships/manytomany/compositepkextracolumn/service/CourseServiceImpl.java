@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-    private final CourseRepository courseRepository;
+  private final CourseRepository courseRepository;
 
-    @Override
-    public Course validateAndGetCourse(Long id) {
-        return courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
-    }
+  @Override
+  public Course validateAndGetCourse(Long id) {
+    return courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
+  }
 
-    @Override
-    public Course saveCourse(Course course) {
-        return courseRepository.save(course);
-    }
+  @Override
+  public Course saveCourse(Course course) {
+    return courseRepository.save(course);
+  }
 
-    @Override
-    public void deleteCourse(Course course) {
-        courseRepository.delete(course);
-    }
+  @Override
+  public void deleteCourse(Course course) {
+    courseRepository.delete(course);
+  }
 }
