@@ -8,5 +8,5 @@ public interface MyContainers {
 
     @Container
     @ServiceConnection
-    PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:18.0");
+    PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:18.3");
 }
