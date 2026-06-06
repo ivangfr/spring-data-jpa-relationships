@@ -30,7 +30,10 @@ import org.springframework.http.ResponseEntity;
 @AutoConfigureTestRestTemplate
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = "spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true")
+    properties =
+        "spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true") // NOTE: Hibernate
+// workaround for tests;
+// not for production
 @ImportTestcontainers(MyContainers.class)
 class ReviewerArticleControllerTest implements MyContainers {
 
