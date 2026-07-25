@@ -225,7 +225,7 @@ This project enforces consistent Java formatting using the [Spotless](https://gi
   ./mvnw spotless:apply
   ```
 
-Formatting is enforced automatically during `./mvnw verify`.
+Formatting is enforced automatically during `./mvnw test`.
 
 ## Support
 
